@@ -43,13 +43,14 @@ namespace Adlink_Logger_CS
         public const string VALUE_TEST_CASE					="TestCase";
         public const string VALUE_MODIFY_FILES				="ModifyFiles";
 
-        public const string FORM_LOCATION_VALUE			    ="FormLocationV";
-        public const string FORM_LOCATION_X_VALUE			="FormLocationXV";
-        public const string FORM_LOCATION_Y_VALUE			="FormLocationYV";
-
-        public const string PROJECT_NAME_KEY				="ProjectName";
+		public const string PROJECT_NAME_KEY				="ProjectName";
         public const    int MAX_PROJECT_NAME_SAVED			=5;
 
+		//
+		// Saved Form Layout
+		//
+		private System.Drawing.Point formLocation;
+		private System.Drawing.Size formSize;
         public Form1()
         {
             InitializeComponent();
@@ -58,8 +59,26 @@ namespace Adlink_Logger_CS
 
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			Properties.Settings.Default.F1State = this.WindowState;
+			if (this.WindowState == FormWindowState.Normal)
+			{
+				// save location and size if the state is normal
+				Properties.Settings.Default.F1Location = this.Location;
+				Properties.Settings.Default.F1Size = this.Size;
+			}
+			else
+			{
+				// save the RestoreBounds if the form is minimized or maximized!
+				Properties.Settings.Default.F1Location = this.RestoreBounds.Location;
+				Properties.Settings.Default.F1Size = this.RestoreBounds.Size;
+			}
+
+			// don't forget to save the settings
+			Properties.Settings.Default.Save();
+
 			SaveSettings();
 		}
+		
 		private void SaveComboSettings(RegistryKey appKey, string keyName, System.Windows.Forms.ComboBox comboBox)
 		{
 			string keyNameIndex = keyName + "_Index";
@@ -87,8 +106,8 @@ namespace Adlink_Logger_CS
 			appKey.SetValue(VALUE_BIOS_TYPE_STANDARD, radioButtonCrb.Checked);
 			appKey.SetValue(VALUE_BIOS_TYPE_CUSTOMIZED, radioButtonCustomized.Checked);
 			appKey.SetValue(VALUE_PROJECT_NAME, comboBoxProjectName.Text);
-			appKey.SetValue(VALUE_CUSTOMER_NAME, textBoxCustomerName);
-			appKey.SetValue(VALUE_BIOS_VERSION, textBoxBiosVersion);
+			appKey.SetValue(VALUE_CUSTOMER_NAME, textBoxCustomerName.Text);
+			appKey.SetValue(VALUE_BIOS_VERSION, textBoxBiosVersion.Text);
 			appKey.SetValue(VALUE_MODIFY_TYPE_BF, radioButtonBugFix.Checked);
 			appKey.SetValue(VALUE_MODIFY_TYPE_FA, radioButtonFunctionAdd.Checked);
 			appKey.SetValue(VALUE_MODIFY_TYPE_FD, radioButtonFunctionRemove.Checked);
@@ -105,16 +124,6 @@ namespace Adlink_Logger_CS
 			// Save comboBox Lists
 			// 
 			SaveComboSettings(appKey, PROJECT_NAME_KEY, comboBoxProjectName);
-			//
-			// Save form layout
-			//
-			//appKey.SetValue(FORM_LOCATION_X_VALUE, formLocation.X);
-			//appKey.SetValue(FORM_LOCATION_Y_VALUE, formLocation.Y);
-			appKey.SetValue(FORM_LOCATION_VALUE, this.Location);
-			//
-			// Save Category List File Name
-			//
-			//appKey.SetValue(VALUE_CATEGORY_LIST_FILE, fileCategory);
 		}
 
 		private void RestoreComboSettings(RegistryKey appKey, string keyName, System.Windows.Forms.ComboBox comboBox)
@@ -179,17 +188,27 @@ namespace Adlink_Logger_CS
 			textBoxDescription.Text = (string) appKey.GetValue(VALUE_DESCRIPTION, "");
 			textBoxTestCase.Text = (string) appKey.GetValue(VALUE_TEST_CASE, "");
 			textBoxModifyFiles.Text = (string)appKey.GetValue(VALUE_MODIFY_FILES, "");
-			//
-			// Restore form layout
-			//
-			//formLocation.X = (Int32)appKey.GetValue(FORM_LOCATION_X_VALUE, this.Location.X);
-			//formLocation.Y = (Int32)appKey.GetValue(FORM_LOCATION_Y_VALUE, this.Location.Y);
-			//formLocation = (System.Drawing.Point)appKey.GetValue(FORM_LOCATION_X_VALUE, this.Location);
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
         {
-            EnableControls(sender, e);
+			if (Properties.Settings.Default.F1Size.Width == 0 || Properties.Settings.Default.F1Size.Height == 0)
+			{
+				// first start
+				// optional: add default values
+			}
+			else
+			{
+				this.WindowState = Properties.Settings.Default.F1State;
+
+				// we don't want a minimized window at startup
+				if (this.WindowState == FormWindowState.Minimized) this.WindowState = FormWindowState.Normal;
+
+				this.Location = Properties.Settings.Default.F1Location;
+				this.Size = Properties.Settings.Default.F1Size;
+			}
+
+			EnableControls(sender, e);
         }
 
         private void EnableControls(object sender, EventArgs e)
@@ -312,26 +331,6 @@ namespace Adlink_Logger_CS
 			return asciiString;
 		}
 
-		private void pictureBoxAdlinkLogo_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://tpdc-km.adlinktech.com:8090/pages/viewpage.action?pageId=21037656");
-        }
-
-        private void pictureBoxAdlinkLogo_DoubleClick(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/PhilXing/Adlink-Logger-CS");
-        }
-
-        private void buttonClipboard_Click(object sender, EventArgs e)
-        {
-			Clipboard.SetDataObject(exportLog());
-			//
-			// Sound
-			//
-			SystemSounds.Asterisk.Play();
-			MessageBox.Show("Copy to Clipboard done!");
-		}
-
 		private void UpdateComboBox(System.Windows.Forms.ComboBox comboBox, string str, bool insert)
 		{
 			int index;
@@ -364,6 +363,17 @@ namespace Adlink_Logger_CS
 			}
 		}
 		
+        private void buttonClipboard_Click(object sender, EventArgs e)
+        {
+			Clipboard.SetDataObject(exportLog());
+			//
+			// Sound
+			//
+			SystemSounds.Asterisk.Play();
+			MessageBox.Show("Copy to Clipboard done!");
+		}
+
+		
 		private void comboBoxProjectName_Leave(object sender, EventArgs e)
         {
 			UpdateComboBox(comboBoxProjectName, comboBoxProjectName.Text, true);
@@ -384,11 +394,53 @@ namespace Adlink_Logger_CS
         {
 			this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
 		}
+
+        private void textBoxBiosVersion_Leave(object sender, EventArgs e)
+        {
+			if (this.radioButtonCrb.Checked) {
+				if (this.textBoxBiosVersion.Text.Length >= 4) {
+					if (String.Compare(this.textBoxBiosVersion.Text.Substring(0, 4), "CRB_") != 0) {
+						this.textBoxBiosVersion.Text = "CRB_" + this.textBoxBiosVersion.Text;
+					}
+				}
+				else {
+					this.textBoxBiosVersion.Text = "CRB_" + this.textBoxBiosVersion.Text;
+				}
+			}
+        }
+
 		private void buttonToday_Click(object sender, EventArgs e)
         {
 			DateTime localDate = DateTime.Now;
 			this.textBoxDate.Text = localDate.Year.ToString("0000") + localDate.Month.ToString("00") + localDate.Day.ToString("00");
 		}
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+			string strIssue = this.textBoxIssueNumber.Text;
+			string FileName = strIssue + ".txt";
+
+			if (folderBrowserDialog1.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+			FileName = Path.Combine(folderBrowserDialog1.SelectedPath, FileName);
+			StreamWriter dout = new StreamWriter(FileName, false, System.Text.Encoding.ASCII);
+			dout.WriteLine(exportLog());
+			dout.Close();
+			//
+			// Sound
+			//
+			SystemSounds.Asterisk.Play();
+			MessageBox.Show("Export to " + Path.GetFileName(FileName) + " done!");
+        }
+
+		private void pictureBoxAdlinkLogo_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://tpdc-km.adlinktech.com:8090/pages/viewpage.action?pageId=21037656");
+        }
+
+        private void pictureBoxAdlinkLogo_DoubleClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/PhilXing/Adlink-Logger-CS");
+        }
 
     }
 }
