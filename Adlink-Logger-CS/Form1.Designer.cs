@@ -69,21 +69,21 @@ namespace Adlink_Logger_CS
             this.textBoxBiosVersion = new System.Windows.Forms.TextBox();
             this.checkBoxSignature = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButtonCustomized = new System.Windows.Forms.RadioButton();
-            this.radioButtonStandard = new System.Windows.Forms.RadioButton();
-            this.radioButtonCrb = new System.Windows.Forms.RadioButton();
-            this.groupBoxBiosType = new System.Windows.Forms.GroupBox();
-            this.radioButtonMessage = new System.Windows.Forms.RadioButton();
-            this.radioButtonMark = new System.Windows.Forms.RadioButton();
-            this.radioButtonTag = new System.Windows.Forms.RadioButton();
-            this.groupBoxModification = new System.Windows.Forms.GroupBox();
-            this.radioButtonFunctionRemove = new System.Windows.Forms.RadioButton();
-            this.radioButtonFunctionAdd = new System.Windows.Forms.RadioButton();
-            this.radioButtonBugFix = new System.Windows.Forms.RadioButton();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.radioButtonCustomized = new System.Windows.Forms.RadioButton();
+            this.radioButtonCrb = new System.Windows.Forms.RadioButton();
+            this.radioButtonStandard = new System.Windows.Forms.RadioButton();
+            this.groupBoxBiosType = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.radioButtonMessage = new System.Windows.Forms.RadioButton();
+            this.radioButtonTag = new System.Windows.Forms.RadioButton();
+            this.radioButtonMark = new System.Windows.Forms.RadioButton();
+            this.groupBoxModification = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.radioButtonFunctionRemove = new System.Windows.Forms.RadioButton();
+            this.radioButtonBugFix = new System.Windows.Forms.RadioButton();
+            this.radioButtonFunctionAdd = new System.Windows.Forms.RadioButton();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdlinkLogo)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -93,12 +93,12 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBoxBiosType.SuspendLayout();
-            this.groupBoxModification.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
+            this.groupBoxBiosType.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.groupBoxModification.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBoxAdlinkLogo
@@ -554,7 +554,7 @@ namespace Adlink_Logger_CS
             this.comboBoxProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxProjectName.DropDownWidth = 134;
             this.comboBoxProjectName.FormattingEnabled = true;
-            this.comboBoxProjectName.Location = new System.Drawing.Point(137, 7);
+            this.comboBoxProjectName.Location = new System.Drawing.Point(137, 5);
             this.comboBoxProjectName.Name = "comboBoxProjectName";
             this.comboBoxProjectName.Size = new System.Drawing.Size(197, 27);
             this.comboBoxProjectName.Sorted = true;
@@ -589,7 +589,7 @@ namespace Adlink_Logger_CS
             this.checkBoxSignature.TabIndex = 13;
             this.checkBoxSignature.Text = "<ADLINK-XXYYYYMMDD_ZZ>";
             this.checkBoxSignature.UseVisualStyleBackColor = true;
-            this.checkBoxSignature.CheckedChanged += new System.EventHandler(this.EnableControls);
+            this.checkBoxSignature.CheckedChanged += new System.EventHandler(this.checkBoxSignature_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -606,6 +606,24 @@ namespace Adlink_Logger_CS
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "BIOS Type";
             // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 3;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38F));
+            this.tableLayoutPanel10.Controls.Add(this.radioButtonCustomized, 2, 0);
+            this.tableLayoutPanel10.Controls.Add(this.radioButtonCrb, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.radioButtonStandard, 1, 0);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 24);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(331, 39);
+            this.tableLayoutPanel10.TabIndex = 27;
+            // 
             // radioButtonCustomized
             // 
             this.radioButtonCustomized.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -617,6 +635,19 @@ namespace Adlink_Logger_CS
             this.radioButtonCustomized.Text = "Customized";
             this.radioButtonCustomized.UseVisualStyleBackColor = true;
             this.radioButtonCustomized.CheckedChanged += new System.EventHandler(this.EnableControls);
+            // 
+            // radioButtonCrb
+            // 
+            this.radioButtonCrb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonCrb.AutoSize = true;
+            this.radioButtonCrb.Location = new System.Drawing.Point(3, 8);
+            this.radioButtonCrb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radioButtonCrb.Name = "radioButtonCrb";
+            this.radioButtonCrb.Size = new System.Drawing.Size(73, 23);
+            this.radioButtonCrb.TabIndex = 0;
+            this.radioButtonCrb.Text = "CRB";
+            this.radioButtonCrb.UseVisualStyleBackColor = true;
+            this.radioButtonCrb.CheckedChanged += new System.EventHandler(this.EnableControls);
             // 
             // radioButtonStandard
             // 
@@ -633,19 +664,6 @@ namespace Adlink_Logger_CS
             this.radioButtonStandard.UseVisualStyleBackColor = true;
             this.radioButtonStandard.CheckedChanged += new System.EventHandler(this.EnableControls);
             // 
-            // radioButtonCrb
-            // 
-            this.radioButtonCrb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonCrb.AutoSize = true;
-            this.radioButtonCrb.Location = new System.Drawing.Point(3, 8);
-            this.radioButtonCrb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.radioButtonCrb.Name = "radioButtonCrb";
-            this.radioButtonCrb.Size = new System.Drawing.Size(73, 23);
-            this.radioButtonCrb.TabIndex = 0;
-            this.radioButtonCrb.Text = "CRB";
-            this.radioButtonCrb.UseVisualStyleBackColor = true;
-            this.radioButtonCrb.CheckedChanged += new System.EventHandler(this.EnableControls);
-            // 
             // groupBoxBiosType
             // 
             this.groupBoxBiosType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -660,110 +678,6 @@ namespace Adlink_Logger_CS
             this.groupBoxBiosType.TabIndex = 0;
             this.groupBoxBiosType.TabStop = false;
             this.groupBoxBiosType.Text = "Message Type";
-            // 
-            // radioButtonMessage
-            // 
-            this.radioButtonMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonMessage.AutoSize = true;
-            this.radioButtonMessage.Checked = true;
-            this.radioButtonMessage.Location = new System.Drawing.Point(217, 8);
-            this.radioButtonMessage.Name = "radioButtonMessage";
-            this.radioButtonMessage.Size = new System.Drawing.Size(111, 23);
-            this.radioButtonMessage.TabIndex = 2;
-            this.radioButtonMessage.TabStop = true;
-            this.radioButtonMessage.Text = "Message";
-            this.radioButtonMessage.UseVisualStyleBackColor = true;
-            this.radioButtonMessage.CheckedChanged += new System.EventHandler(this.EnableControls);
-            // 
-            // radioButtonMark
-            // 
-            this.radioButtonMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonMark.AutoSize = true;
-            this.radioButtonMark.Location = new System.Drawing.Point(69, 8);
-            this.radioButtonMark.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.radioButtonMark.Name = "radioButtonMark";
-            this.radioButtonMark.Size = new System.Drawing.Size(142, 23);
-            this.radioButtonMark.TabIndex = 1;
-            this.radioButtonMark.Text = "Mark in history";
-            this.radioButtonMark.UseVisualStyleBackColor = true;
-            this.radioButtonMark.CheckedChanged += new System.EventHandler(this.EnableControls);
-            // 
-            // radioButtonTag
-            // 
-            this.radioButtonTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonTag.AutoSize = true;
-            this.radioButtonTag.Location = new System.Drawing.Point(3, 8);
-            this.radioButtonTag.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.radioButtonTag.Name = "radioButtonTag";
-            this.radioButtonTag.Size = new System.Drawing.Size(60, 23);
-            this.radioButtonTag.TabIndex = 0;
-            this.radioButtonTag.Text = "Tag";
-            this.radioButtonTag.UseVisualStyleBackColor = true;
-            this.radioButtonTag.CheckedChanged += new System.EventHandler(this.EnableControls);
-            // 
-            // groupBoxModification
-            // 
-            this.groupBoxModification.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxModification.Controls.Add(this.tableLayoutPanel9);
-            this.groupBoxModification.Location = new System.Drawing.Point(3, 271);
-            this.groupBoxModification.Name = "groupBoxModification";
-            this.groupBoxModification.Size = new System.Drawing.Size(337, 69);
-            this.groupBoxModification.TabIndex = 8;
-            this.groupBoxModification.TabStop = false;
-            this.groupBoxModification.Text = "Modification Type";
-            // 
-            // radioButtonFunctionRemove
-            // 
-            this.radioButtonFunctionRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonFunctionRemove.AutoSize = true;
-            this.radioButtonFunctionRemove.Location = new System.Drawing.Point(200, 10);
-            this.radioButtonFunctionRemove.Name = "radioButtonFunctionRemove";
-            this.radioButtonFunctionRemove.Size = new System.Drawing.Size(128, 23);
-            this.radioButtonFunctionRemove.TabIndex = 2;
-            this.radioButtonFunctionRemove.Text = "Func. Remove";
-            this.radioButtonFunctionRemove.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonFunctionAdd
-            // 
-            this.radioButtonFunctionAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonFunctionAdd.AutoSize = true;
-            this.radioButtonFunctionAdd.Location = new System.Drawing.Point(85, 10);
-            this.radioButtonFunctionAdd.Name = "radioButtonFunctionAdd";
-            this.radioButtonFunctionAdd.Size = new System.Drawing.Size(109, 23);
-            this.radioButtonFunctionAdd.TabIndex = 1;
-            this.radioButtonFunctionAdd.Text = "Func. Add";
-            this.radioButtonFunctionAdd.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonBugFix
-            // 
-            this.radioButtonBugFix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonBugFix.AutoSize = true;
-            this.radioButtonBugFix.Checked = true;
-            this.radioButtonBugFix.Location = new System.Drawing.Point(3, 10);
-            this.radioButtonBugFix.Name = "radioButtonBugFix";
-            this.radioButtonBugFix.Size = new System.Drawing.Size(76, 23);
-            this.radioButtonBugFix.TabIndex = 0;
-            this.radioButtonBugFix.TabStop = true;
-            this.radioButtonBugFix.Text = "Bug fix";
-            this.radioButtonBugFix.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.AutoSize = true;
-            this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel3, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel1, 1, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(873, 630);
-            this.tableLayoutPanel7.TabIndex = 26;
             // 
             // tableLayoutPanel8
             // 
@@ -782,6 +696,59 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel8.Size = new System.Drawing.Size(331, 39);
             this.tableLayoutPanel8.TabIndex = 27;
             // 
+            // radioButtonMessage
+            // 
+            this.radioButtonMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonMessage.AutoSize = true;
+            this.radioButtonMessage.Checked = true;
+            this.radioButtonMessage.Location = new System.Drawing.Point(217, 8);
+            this.radioButtonMessage.Name = "radioButtonMessage";
+            this.radioButtonMessage.Size = new System.Drawing.Size(111, 23);
+            this.radioButtonMessage.TabIndex = 2;
+            this.radioButtonMessage.TabStop = true;
+            this.radioButtonMessage.Text = "Message";
+            this.radioButtonMessage.UseVisualStyleBackColor = true;
+            this.radioButtonMessage.CheckedChanged += new System.EventHandler(this.EnableControls);
+            // 
+            // radioButtonTag
+            // 
+            this.radioButtonTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonTag.AutoSize = true;
+            this.radioButtonTag.Location = new System.Drawing.Point(3, 8);
+            this.radioButtonTag.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radioButtonTag.Name = "radioButtonTag";
+            this.radioButtonTag.Size = new System.Drawing.Size(60, 23);
+            this.radioButtonTag.TabIndex = 0;
+            this.radioButtonTag.Text = "Tag";
+            this.radioButtonTag.UseVisualStyleBackColor = true;
+            this.radioButtonTag.CheckedChanged += new System.EventHandler(this.EnableControls);
+            // 
+            // radioButtonMark
+            // 
+            this.radioButtonMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonMark.AutoSize = true;
+            this.radioButtonMark.Location = new System.Drawing.Point(69, 8);
+            this.radioButtonMark.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radioButtonMark.Name = "radioButtonMark";
+            this.radioButtonMark.Size = new System.Drawing.Size(142, 23);
+            this.radioButtonMark.TabIndex = 1;
+            this.radioButtonMark.Text = "Mark in history";
+            this.radioButtonMark.UseVisualStyleBackColor = true;
+            this.radioButtonMark.CheckedChanged += new System.EventHandler(this.EnableControls);
+            // 
+            // groupBoxModification
+            // 
+            this.groupBoxModification.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxModification.Controls.Add(this.tableLayoutPanel9);
+            this.groupBoxModification.Location = new System.Drawing.Point(3, 271);
+            this.groupBoxModification.Name = "groupBoxModification";
+            this.groupBoxModification.Size = new System.Drawing.Size(337, 69);
+            this.groupBoxModification.TabIndex = 8;
+            this.groupBoxModification.TabStop = false;
+            this.groupBoxModification.Text = "Modification Type";
+            // 
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 3;
@@ -799,23 +766,56 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel9.Size = new System.Drawing.Size(331, 43);
             this.tableLayoutPanel9.TabIndex = 28;
             // 
-            // tableLayoutPanel10
+            // radioButtonFunctionRemove
             // 
-            this.tableLayoutPanel10.ColumnCount = 3;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38F));
-            this.tableLayoutPanel10.Controls.Add(this.radioButtonCustomized, 2, 0);
-            this.tableLayoutPanel10.Controls.Add(this.radioButtonCrb, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.radioButtonStandard, 1, 0);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 24);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(331, 39);
-            this.tableLayoutPanel10.TabIndex = 27;
+            this.radioButtonFunctionRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonFunctionRemove.AutoSize = true;
+            this.radioButtonFunctionRemove.Location = new System.Drawing.Point(200, 10);
+            this.radioButtonFunctionRemove.Name = "radioButtonFunctionRemove";
+            this.radioButtonFunctionRemove.Size = new System.Drawing.Size(128, 23);
+            this.radioButtonFunctionRemove.TabIndex = 2;
+            this.radioButtonFunctionRemove.Text = "Func. Remove";
+            this.radioButtonFunctionRemove.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonBugFix
+            // 
+            this.radioButtonBugFix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonBugFix.AutoSize = true;
+            this.radioButtonBugFix.Checked = true;
+            this.radioButtonBugFix.Location = new System.Drawing.Point(3, 10);
+            this.radioButtonBugFix.Name = "radioButtonBugFix";
+            this.radioButtonBugFix.Size = new System.Drawing.Size(76, 23);
+            this.radioButtonBugFix.TabIndex = 0;
+            this.radioButtonBugFix.TabStop = true;
+            this.radioButtonBugFix.Text = "Bug fix";
+            this.radioButtonBugFix.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonFunctionAdd
+            // 
+            this.radioButtonFunctionAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonFunctionAdd.AutoSize = true;
+            this.radioButtonFunctionAdd.Location = new System.Drawing.Point(85, 10);
+            this.radioButtonFunctionAdd.Name = "radioButtonFunctionAdd";
+            this.radioButtonFunctionAdd.Size = new System.Drawing.Size(109, 23);
+            this.radioButtonFunctionAdd.TabIndex = 1;
+            this.radioButtonFunctionAdd.Text = "Func. Add";
+            this.radioButtonFunctionAdd.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.AutoSize = true;
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel3, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel1, 1, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(873, 630);
+            this.tableLayoutPanel7.TabIndex = 26;
             // 
             // Form1
             // 
@@ -846,15 +846,15 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBoxBiosType.ResumeLayout(false);
-            this.groupBoxModification.ResumeLayout(false);
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel8.PerformLayout();
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
+            this.groupBoxBiosType.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel8.PerformLayout();
+            this.groupBoxModification.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

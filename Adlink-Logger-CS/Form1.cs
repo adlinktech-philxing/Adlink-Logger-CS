@@ -44,7 +44,8 @@ namespace Adlink_Logger_CS
         public const string VALUE_MODIFY_FILES				="ModifyFiles";
 
 		public const string PROJECT_NAME_KEY				="ProjectName";
-        public const    int MAX_PROJECT_NAME_SAVED			=5;
+		public const int MAX_PROJECT_NAME_SAVED = 5;
+		public const int LEADING_SPACE = 8;
 
 		//
 		// Saved Form Layout
@@ -222,14 +223,13 @@ namespace Adlink_Logger_CS
             this.textBoxIssueNumber.Enabled = this.radioButtonMessage.Checked;
             this.textBoxSummary.Enabled = this.radioButtonMessage.Checked || this.radioButtonMark.Checked;
 
-            this.groupBoxSignature.Enabled = this.checkBoxSignature.Checked;
-
             this.textBoxDescription.Enabled = this.radioButtonMessage.Checked;
             this.textBoxTestCase.Enabled = this.radioButtonMessage.Checked;
             this.textBoxModifyFiles.Enabled = this.radioButtonMessage.Checked;
 
-            this.groupBoxSignature.Enabled = this.checkBoxSignature.Checked;
-        }
+			this.checkBoxSignature.Enabled = this.radioButtonMessage.Checked;
+			this.groupBoxSignature.Enabled = this.radioButtonMessage.Checked;
+		}
 
 		private string exportLog()
 		{
@@ -296,7 +296,7 @@ namespace Adlink_Logger_CS
 				strLog = strLog + "\r\n\r\nDescription:";
 				if (!(System.String.IsNullOrEmpty(textBoxDescription.Text)))
 				{
-					strLog = strLog + "\r\n  " + textBoxDescription.Text.Replace("\r\n", "\r\n  ");
+					strLog = strLog + "\r\n        " + textBoxDescription.Text.Replace("\r\n", "\r\n        ");
 				}
 			}
 			if (this.textBoxTestCase.Enabled)
@@ -304,7 +304,7 @@ namespace Adlink_Logger_CS
 				strLog = strLog + "\r\n\r\nTest Case:";
 				if (!(System.String.IsNullOrEmpty(textBoxTestCase.Text)))
 				{
-					strLog = strLog + "\r\n  " + textBoxTestCase.Text.Replace("\r\n", "\r\n  ");
+					strLog = strLog + "\r\n        " + textBoxTestCase.Text.Replace("\r\n", "\r\n        ");
 				}
 			}
 			if (this.textBoxModifyFiles.Enabled)
@@ -312,7 +312,7 @@ namespace Adlink_Logger_CS
 				strLog = strLog + "\r\n\r\nModify Files:";
 				if (!(System.String.IsNullOrEmpty(textBoxModifyFiles.Text)))
 				{
-					strLog = strLog + "\r\n  " + textBoxModifyFiles.Text.Replace("\r\n", "\r\n  ");
+					strLog = strLog + "\r\n        " + textBoxModifyFiles.Text.Replace("\r\n", "\r\n        ");
 				}
 			}
 			//
@@ -379,7 +379,22 @@ namespace Adlink_Logger_CS
 			UpdateComboBox(comboBoxProjectName, comboBoxProjectName.Text, true);
 		}
 
-        private void textBoxAuthor_TextChanged(object sender, EventArgs e)
+        private void checkBoxSignature_CheckedChanged(object sender, EventArgs e)
+        {
+			groupBoxSignature.Enabled = checkBoxSignature.Checked;
+			if (checkBoxSignature.Checked)
+            {
+				this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
+            }
+            else
+            {
+				this.checkBoxSignature.Text = "";
+			}
+
+
+		}
+
+		private void textBoxAuthor_TextChanged(object sender, EventArgs e)
         {
 			this.textBoxAuthor.Text = this.textBoxAuthor.Text.ToUpper();
 			this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
@@ -441,6 +456,5 @@ namespace Adlink_Logger_CS
         {
             System.Diagnostics.Process.Start("https://github.com/PhilXing/Adlink-Logger-CS");
         }
-
     }
 }
