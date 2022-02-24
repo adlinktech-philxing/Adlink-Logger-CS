@@ -554,7 +554,7 @@ namespace Adlink_Logger_CS
             this.comboBoxProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxProjectName.DropDownWidth = 134;
             this.comboBoxProjectName.FormattingEnabled = true;
-            this.comboBoxProjectName.Location = new System.Drawing.Point(137, 5);
+            this.comboBoxProjectName.Location = new System.Drawing.Point(137, 7);
             this.comboBoxProjectName.Name = "comboBoxProjectName";
             this.comboBoxProjectName.Size = new System.Drawing.Size(197, 27);
             this.comboBoxProjectName.Sorted = true;
@@ -828,7 +828,7 @@ namespace Adlink_Logger_CS
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
-            this.Text = "ADLink Commit Logger v0.2-2021-0816";
+            this.Text = "ADLink Commit Logger v0.2-2022-0224";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdlinkLogo)).EndInit();

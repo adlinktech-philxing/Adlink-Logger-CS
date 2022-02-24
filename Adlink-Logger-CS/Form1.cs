@@ -347,7 +347,11 @@ namespace Adlink_Logger_CS
 				if (insert)
 				{
 					comboBox.Items.Insert(0, str);
-					comboBox.SelectedIndex = 0;
+					if (comboBox.Items.Count > MAX_PROJECT_NAME_SAVED)
+					{
+						comboBox.Items.RemoveAt(0);
+					}
+					comboBox.SelectedIndex = comboBox.FindStringExact(str);
 				}
 				else
 				{
@@ -357,9 +361,9 @@ namespace Adlink_Logger_CS
 			else
 			{
 				comboBox.SelectedIndex = index;
-				comboBox.Items.Insert(0, comboBox.SelectedItem);
-				comboBox.Items.RemoveAt(comboBox.SelectedIndex);
-				comboBox.SelectedIndex = 0;
+				//comboBox.Items.Insert(0, comboBox.SelectedItem);
+				//comboBox.Items.RemoveAt(comboBox.SelectedIndex);
+				//comboBox.SelectedIndex = 0;
 			}
 		}
 		
