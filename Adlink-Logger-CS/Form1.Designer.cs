@@ -38,6 +38,8 @@ namespace Adlink_Logger_CS
             this.textBoxSerialNumber = new System.Windows.Forms.TextBox();
             this.textBoxSummary = new System.Windows.Forms.TextBox();
             this.textBoxIssueNumber = new System.Windows.Forms.TextBox();
+            this.buttonBrowse = new System.Windows.Forms.Button();
+            this.comboBoxRepo = new System.Windows.Forms.ComboBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
@@ -51,6 +53,8 @@ namespace Adlink_Logger_CS
             this.buttonImport = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.labelRepo = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.labelIssueNumber = new System.Windows.Forms.Label();
             this.labelSummary = new System.Windows.Forms.Label();
@@ -88,6 +92,7 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBoxSignature.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -111,7 +116,7 @@ namespace Adlink_Logger_CS
             this.pictureBoxAdlinkLogo.Location = new System.Drawing.Point(3, 4);
             this.pictureBoxAdlinkLogo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBoxAdlinkLogo.Name = "pictureBoxAdlinkLogo";
-            this.pictureBoxAdlinkLogo.Size = new System.Drawing.Size(512, 112);
+            this.pictureBoxAdlinkLogo.Size = new System.Drawing.Size(512, 119);
             this.pictureBoxAdlinkLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxAdlinkLogo.TabIndex = 0;
             this.pictureBoxAdlinkLogo.TabStop = false;
@@ -125,18 +130,17 @@ namespace Adlink_Logger_CS
             this.textBoxAuthor.Location = new System.Drawing.Point(85, 6);
             this.textBoxAuthor.MaxLength = 2;
             this.textBoxAuthor.Name = "textBoxAuthor";
-            this.textBoxAuthor.Size = new System.Drawing.Size(126, 27);
-            this.textBoxAuthor.TabIndex = 2;
+            this.textBoxAuthor.Size = new System.Drawing.Size(126, 23);
+            this.textBoxAuthor.TabIndex = 3;
             this.toolTip1.SetToolTip(this.textBoxAuthor, "XX, 2 letters\' initial of the name of the author");
-            this.textBoxAuthor.TextChanged += new System.EventHandler(this.textBoxAuthor_TextChanged);
             // 
             // textBoxDate
             // 
             this.textBoxDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDate.Location = new System.Drawing.Point(85, 46);
+            this.textBoxDate.Location = new System.Drawing.Point(85, 42);
             this.textBoxDate.MaxLength = 8;
             this.textBoxDate.Name = "textBoxDate";
-            this.textBoxDate.Size = new System.Drawing.Size(126, 27);
+            this.textBoxDate.Size = new System.Drawing.Size(126, 23);
             this.textBoxDate.TabIndex = 4;
             this.toolTip1.SetToolTip(this.textBoxDate, "YYYYMMDD, date code");
             this.textBoxDate.TextChanged += new System.EventHandler(this.textBoxDate_TextChanged);
@@ -144,31 +148,56 @@ namespace Adlink_Logger_CS
             // textBoxSerialNumber
             // 
             this.textBoxSerialNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSerialNumber.Location = new System.Drawing.Point(85, 86);
+            this.textBoxSerialNumber.Location = new System.Drawing.Point(85, 79);
             this.textBoxSerialNumber.MaxLength = 2;
             this.textBoxSerialNumber.Name = "textBoxSerialNumber";
-            this.textBoxSerialNumber.Size = new System.Drawing.Size(126, 27);
-            this.textBoxSerialNumber.TabIndex = 7;
+            this.textBoxSerialNumber.Size = new System.Drawing.Size(126, 23);
+            this.textBoxSerialNumber.TabIndex = 6;
             this.toolTip1.SetToolTip(this.textBoxSerialNumber, "personal daily serial number");
             this.textBoxSerialNumber.TextChanged += new System.EventHandler(this.textBoxSerialNumber_TextChanged);
             // 
             // textBoxSummary
             // 
             this.textBoxSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSummary.Location = new System.Drawing.Point(115, 48);
+            this.textBoxSummary.Location = new System.Drawing.Point(115, 43);
             this.textBoxSummary.Name = "textBoxSummary";
-            this.textBoxSummary.Size = new System.Drawing.Size(219, 27);
-            this.textBoxSummary.TabIndex = 12;
+            this.textBoxSummary.Size = new System.Drawing.Size(219, 23);
+            this.textBoxSummary.TabIndex = 1;
             this.toolTip1.SetToolTip(this.textBoxSummary, "Might be Summary from Jira");
             // 
             // textBoxIssueNumber
             // 
             this.textBoxIssueNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIssueNumber.Location = new System.Drawing.Point(115, 7);
+            this.textBoxIssueNumber.Location = new System.Drawing.Point(115, 6);
             this.textBoxIssueNumber.Name = "textBoxIssueNumber";
-            this.textBoxIssueNumber.Size = new System.Drawing.Size(219, 27);
-            this.textBoxIssueNumber.TabIndex = 10;
+            this.textBoxIssueNumber.Size = new System.Drawing.Size(219, 23);
+            this.textBoxIssueNumber.TabIndex = 0;
             this.toolTip1.SetToolTip(this.textBoxIssueNumber, "Jira #");
+            // 
+            // buttonBrowse
+            // 
+            this.buttonBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonBrowse.Location = new System.Drawing.Point(306, 3);
+            this.buttonBrowse.Name = "buttonBrowse";
+            this.buttonBrowse.Size = new System.Drawing.Size(28, 34);
+            this.buttonBrowse.TabIndex = 1;
+            this.buttonBrowse.Text = "...";
+            this.toolTip1.SetToolTip(this.buttonBrowse, "Browse location of the Git Repo.");
+            this.buttonBrowse.UseVisualStyleBackColor = true;
+            this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
+            // 
+            // comboBoxRepo
+            // 
+            this.comboBoxRepo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxRepo.FormattingEnabled = true;
+            this.comboBoxRepo.Location = new System.Drawing.Point(52, 10);
+            this.comboBoxRepo.Name = "comboBoxRepo";
+            this.comboBoxRepo.Size = new System.Drawing.Size(248, 23);
+            this.comboBoxRepo.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.comboBoxRepo, "Location of Git Reposiroty");
+            this.comboBoxRepo.Leave += new System.EventHandler(this.comboBoxRepo_Leave);
             // 
             // tableLayoutPanel1
             // 
@@ -197,52 +226,52 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.363684F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.28488F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.769442F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(518, 624);
-            this.tableLayoutPanel1.TabIndex = 24;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(518, 661);
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
             // textBoxDescription
             // 
             this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDescription.Location = new System.Drawing.Point(3, 150);
+            this.textBoxDescription.Location = new System.Drawing.Point(3, 158);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxDescription.Size = new System.Drawing.Size(512, 114);
-            this.textBoxDescription.TabIndex = 16;
+            this.textBoxDescription.Size = new System.Drawing.Size(512, 121);
+            this.textBoxDescription.TabIndex = 0;
             // 
             // textBoxTestCase
             // 
             this.textBoxTestCase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxTestCase.Location = new System.Drawing.Point(3, 297);
+            this.textBoxTestCase.Location = new System.Drawing.Point(3, 313);
             this.textBoxTestCase.Multiline = true;
             this.textBoxTestCase.Name = "textBoxTestCase";
             this.textBoxTestCase.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxTestCase.Size = new System.Drawing.Size(512, 114);
-            this.textBoxTestCase.TabIndex = 18;
+            this.textBoxTestCase.Size = new System.Drawing.Size(512, 121);
+            this.textBoxTestCase.TabIndex = 1;
             // 
             // textBoxModifyFiles
             // 
             this.textBoxModifyFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxModifyFiles.Location = new System.Drawing.Point(3, 444);
+            this.textBoxModifyFiles.Location = new System.Drawing.Point(3, 468);
             this.textBoxModifyFiles.Multiline = true;
             this.textBoxModifyFiles.Name = "textBoxModifyFiles";
             this.textBoxModifyFiles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxModifyFiles.Size = new System.Drawing.Size(512, 114);
-            this.textBoxModifyFiles.TabIndex = 20;
+            this.textBoxModifyFiles.Size = new System.Drawing.Size(512, 121);
+            this.textBoxModifyFiles.TabIndex = 2;
             // 
             // labelModifyFiles
             // 
             this.labelModifyFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelModifyFiles.AutoSize = true;
-            this.labelModifyFiles.Location = new System.Drawing.Point(3, 422);
+            this.labelModifyFiles.Location = new System.Drawing.Point(3, 450);
             this.labelModifyFiles.Name = "labelModifyFiles";
-            this.labelModifyFiles.Size = new System.Drawing.Size(94, 19);
+            this.labelModifyFiles.Size = new System.Drawing.Size(75, 15);
             this.labelModifyFiles.TabIndex = 19;
             this.labelModifyFiles.Text = "Modify Files";
             // 
@@ -250,9 +279,9 @@ namespace Adlink_Logger_CS
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 128);
+            this.label1.Location = new System.Drawing.Point(3, 140);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 19);
+            this.label1.Size = new System.Drawing.Size(71, 15);
             this.label1.TabIndex = 15;
             this.label1.Text = "Description";
             // 
@@ -260,9 +289,9 @@ namespace Adlink_Logger_CS
             // 
             this.labelTestCase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelTestCase.AutoSize = true;
-            this.labelTestCase.Location = new System.Drawing.Point(3, 275);
+            this.labelTestCase.Location = new System.Drawing.Point(3, 295);
             this.labelTestCase.Name = "labelTestCase";
-            this.labelTestCase.Size = new System.Drawing.Size(74, 19);
+            this.labelTestCase.Size = new System.Drawing.Size(60, 15);
             this.labelTestCase.TabIndex = 17;
             this.labelTestCase.Text = "Test Case";
             // 
@@ -278,13 +307,13 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel2.Controls.Add(this.buttonExport, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonImport, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonClipboard, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 564);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 595);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(512, 57);
-            this.tableLayoutPanel2.TabIndex = 21;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 63F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(512, 63);
+            this.tableLayoutPanel2.TabIndex = 3;
             // 
             // buttonExport
             // 
@@ -293,8 +322,8 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonExport.Location = new System.Drawing.Point(3, 3);
             this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(164, 51);
-            this.buttonExport.TabIndex = 21;
+            this.buttonExport.Size = new System.Drawing.Size(164, 57);
+            this.buttonExport.TabIndex = 0;
             this.buttonExport.Text = "Export";
             this.buttonExport.UseVisualStyleBackColor = true;
             this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
@@ -307,8 +336,8 @@ namespace Adlink_Logger_CS
             this.buttonImport.Enabled = false;
             this.buttonImport.Location = new System.Drawing.Point(343, 3);
             this.buttonImport.Name = "buttonImport";
-            this.buttonImport.Size = new System.Drawing.Size(166, 51);
-            this.buttonImport.TabIndex = 23;
+            this.buttonImport.Size = new System.Drawing.Size(166, 57);
+            this.buttonImport.TabIndex = 2;
             this.buttonImport.Text = "Import";
             this.buttonImport.UseVisualStyleBackColor = true;
             // 
@@ -319,8 +348,8 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClipboard.Location = new System.Drawing.Point(173, 3);
             this.buttonClipboard.Name = "buttonClipboard";
-            this.buttonClipboard.Size = new System.Drawing.Size(164, 51);
-            this.buttonClipboard.TabIndex = 22;
+            this.buttonClipboard.Size = new System.Drawing.Size(164, 57);
+            this.buttonClipboard.TabIndex = 1;
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
@@ -332,25 +361,57 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 4);
-            this.tableLayoutPanel3.Controls.Add(this.groupBoxSignature, 0, 6);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.checkBoxSignature, 0, 5);
-            this.tableLayoutPanel3.Controls.Add(this.groupBox1, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.groupBoxBiosType, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.groupBoxModification, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel11, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.groupBoxSignature, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.checkBoxSignature, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.groupBox1, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.groupBoxBiosType, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.groupBoxModification, 0, 4);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 7;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.04952F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.04952F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.01755F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.04952F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.26316F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.467546F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.10317F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(343, 624);
-            this.tableLayoutPanel3.TabIndex = 25;
+            this.tableLayoutPanel3.RowCount = 8;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(343, 661);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 3;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.54006F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.37092F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.792285F));
+            this.tableLayoutPanel11.Controls.Add(this.labelRepo, 0, 0);
+            this.tableLayoutPanel11.Controls.Add(this.buttonBrowse, 2, 0);
+            this.tableLayoutPanel11.Controls.Add(this.comboBoxRepo, 1, 0);
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 1;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(337, 40);
+            this.tableLayoutPanel11.TabIndex = 0;
+            // 
+            // labelRepo
+            // 
+            this.labelRepo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelRepo.AutoSize = true;
+            this.labelRepo.Location = new System.Drawing.Point(3, 0);
+            this.labelRepo.Name = "labelRepo";
+            this.labelRepo.Size = new System.Drawing.Size(43, 40);
+            this.labelRepo.TabIndex = 0;
+            this.labelRepo.Text = "Folder";
+            this.labelRepo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel5
             // 
@@ -364,13 +425,13 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel5.Controls.Add(this.labelSummary, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.textBoxIssueNumber, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.textBoxSummary, 1, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 346);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 404);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(337, 83);
-            this.tableLayoutPanel5.TabIndex = 26;
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(337, 73);
+            this.tableLayoutPanel5.TabIndex = 5;
             // 
             // labelIssueNumber
             // 
@@ -380,7 +441,7 @@ namespace Adlink_Logger_CS
             this.labelIssueNumber.AutoSize = true;
             this.labelIssueNumber.Location = new System.Drawing.Point(3, 0);
             this.labelIssueNumber.Name = "labelIssueNumber";
-            this.labelIssueNumber.Size = new System.Drawing.Size(106, 41);
+            this.labelIssueNumber.Size = new System.Drawing.Size(106, 36);
             this.labelIssueNumber.TabIndex = 9;
             this.labelIssueNumber.Text = "Issue#";
             this.labelIssueNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -391,9 +452,9 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSummary.AutoSize = true;
-            this.labelSummary.Location = new System.Drawing.Point(3, 41);
+            this.labelSummary.Location = new System.Drawing.Point(3, 36);
             this.labelSummary.Name = "labelSummary";
-            this.labelSummary.Size = new System.Drawing.Size(106, 42);
+            this.labelSummary.Size = new System.Drawing.Size(106, 37);
             this.labelSummary.TabIndex = 11;
             this.labelSummary.Text = "Summary";
             this.labelSummary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -404,10 +465,10 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSignature.Controls.Add(this.tableLayoutPanel6);
-            this.groupBoxSignature.Location = new System.Drawing.Point(3, 469);
+            this.groupBoxSignature.Location = new System.Drawing.Point(3, 516);
             this.groupBoxSignature.Name = "groupBoxSignature";
-            this.groupBoxSignature.Size = new System.Drawing.Size(337, 152);
-            this.groupBoxSignature.TabIndex = 14;
+            this.groupBoxSignature.Size = new System.Drawing.Size(337, 142);
+            this.groupBoxSignature.TabIndex = 7;
             this.groupBoxSignature.TabStop = false;
             this.groupBoxSignature.Text = "Signature";
             // 
@@ -434,15 +495,15 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(331, 120);
-            this.tableLayoutPanel6.TabIndex = 26;
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(331, 110);
+            this.tableLayoutPanel6.TabIndex = 0;
             // 
             // buttonToday
             // 
             this.buttonToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonToday.Location = new System.Drawing.Point(217, 43);
+            this.buttonToday.Location = new System.Drawing.Point(217, 39);
             this.buttonToday.Name = "buttonToday";
-            this.buttonToday.Size = new System.Drawing.Size(111, 33);
+            this.buttonToday.Size = new System.Drawing.Size(111, 30);
             this.buttonToday.TabIndex = 5;
             this.buttonToday.Text = "Today";
             this.buttonToday.UseVisualStyleBackColor = true;
@@ -456,8 +517,8 @@ namespace Adlink_Logger_CS
             this.labelAuthor.AutoSize = true;
             this.labelAuthor.Location = new System.Drawing.Point(3, 0);
             this.labelAuthor.Name = "labelAuthor";
-            this.labelAuthor.Size = new System.Drawing.Size(76, 40);
-            this.labelAuthor.TabIndex = 1;
+            this.labelAuthor.Size = new System.Drawing.Size(76, 36);
+            this.labelAuthor.TabIndex = 0;
             this.labelAuthor.Text = "Author";
             this.labelAuthor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -467,10 +528,10 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(3, 40);
+            this.labelDate.Location = new System.Drawing.Point(3, 36);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(76, 40);
-            this.labelDate.TabIndex = 3;
+            this.labelDate.Size = new System.Drawing.Size(76, 36);
+            this.labelDate.TabIndex = 1;
             this.labelDate.Text = "Date";
             this.labelDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -480,10 +541,10 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSerialnumber.AutoSize = true;
-            this.labelSerialnumber.Location = new System.Drawing.Point(3, 80);
+            this.labelSerialnumber.Location = new System.Drawing.Point(3, 72);
             this.labelSerialnumber.Name = "labelSerialnumber";
-            this.labelSerialnumber.Size = new System.Drawing.Size(76, 40);
-            this.labelSerialnumber.TabIndex = 6;
+            this.labelSerialnumber.Size = new System.Drawing.Size(76, 38);
+            this.labelSerialnumber.TabIndex = 2;
             this.labelSerialnumber.Text = "Serial#";
             this.labelSerialnumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -501,14 +562,14 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel4.Controls.Add(this.comboBoxProjectName, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.textBoxCustomerName, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.textBoxBiosVersion, 1, 2);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 153);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 207);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(337, 112);
-            this.tableLayoutPanel4.TabIndex = 26;
+            this.tableLayoutPanel4.TabIndex = 3;
             // 
             // labelProjectName
             // 
@@ -556,26 +617,26 @@ namespace Adlink_Logger_CS
             this.comboBoxProjectName.FormattingEnabled = true;
             this.comboBoxProjectName.Location = new System.Drawing.Point(137, 7);
             this.comboBoxProjectName.Name = "comboBoxProjectName";
-            this.comboBoxProjectName.Size = new System.Drawing.Size(197, 27);
+            this.comboBoxProjectName.Size = new System.Drawing.Size(197, 23);
             this.comboBoxProjectName.Sorted = true;
-            this.comboBoxProjectName.TabIndex = 3;
+            this.comboBoxProjectName.TabIndex = 0;
             this.comboBoxProjectName.Leave += new System.EventHandler(this.comboBoxProjectName_Leave);
             // 
             // textBoxCustomerName
             // 
             this.textBoxCustomerName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxCustomerName.Location = new System.Drawing.Point(137, 42);
+            this.textBoxCustomerName.Location = new System.Drawing.Point(137, 44);
             this.textBoxCustomerName.Name = "textBoxCustomerName";
-            this.textBoxCustomerName.Size = new System.Drawing.Size(197, 27);
-            this.textBoxCustomerName.TabIndex = 5;
+            this.textBoxCustomerName.Size = new System.Drawing.Size(197, 23);
+            this.textBoxCustomerName.TabIndex = 1;
             // 
             // textBoxBiosVersion
             // 
             this.textBoxBiosVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxBiosVersion.Location = new System.Drawing.Point(137, 79);
+            this.textBoxBiosVersion.Location = new System.Drawing.Point(137, 81);
             this.textBoxBiosVersion.Name = "textBoxBiosVersion";
-            this.textBoxBiosVersion.Size = new System.Drawing.Size(197, 27);
-            this.textBoxBiosVersion.TabIndex = 7;
+            this.textBoxBiosVersion.Size = new System.Drawing.Size(197, 23);
+            this.textBoxBiosVersion.TabIndex = 2;
             this.textBoxBiosVersion.Leave += new System.EventHandler(this.textBoxBiosVersion_Leave);
             // 
             // checkBoxSignature
@@ -583,10 +644,10 @@ namespace Adlink_Logger_CS
             this.checkBoxSignature.AutoSize = true;
             this.checkBoxSignature.Checked = true;
             this.checkBoxSignature.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxSignature.Location = new System.Drawing.Point(3, 435);
+            this.checkBoxSignature.Location = new System.Drawing.Point(3, 483);
             this.checkBoxSignature.Name = "checkBoxSignature";
-            this.checkBoxSignature.Size = new System.Drawing.Size(244, 23);
-            this.checkBoxSignature.TabIndex = 13;
+            this.checkBoxSignature.Size = new System.Drawing.Size(197, 19);
+            this.checkBoxSignature.TabIndex = 6;
             this.checkBoxSignature.Text = "<ADLINK-XXYYYYMMDD_ZZ>";
             this.checkBoxSignature.UseVisualStyleBackColor = true;
             this.checkBoxSignature.CheckedChanged += new System.EventHandler(this.checkBoxSignature_CheckedChanged);
@@ -597,12 +658,12 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tableLayoutPanel10);
-            this.groupBox1.Location = new System.Drawing.Point(3, 79);
+            this.groupBox1.Location = new System.Drawing.Point(3, 129);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(337, 67);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.Size = new System.Drawing.Size(337, 71);
+            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "BIOS Type";
             // 
@@ -616,21 +677,21 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel10.Controls.Add(this.radioButtonCrb, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.radioButtonStandard, 1, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 24);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 20);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(331, 39);
-            this.tableLayoutPanel10.TabIndex = 27;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(331, 47);
+            this.tableLayoutPanel10.TabIndex = 0;
             // 
             // radioButtonCustomized
             // 
             this.radioButtonCustomized.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonCustomized.AutoSize = true;
-            this.radioButtonCustomized.Location = new System.Drawing.Point(207, 8);
+            this.radioButtonCustomized.Location = new System.Drawing.Point(207, 14);
             this.radioButtonCustomized.Name = "radioButtonCustomized";
-            this.radioButtonCustomized.Size = new System.Drawing.Size(121, 23);
+            this.radioButtonCustomized.Size = new System.Drawing.Size(121, 19);
             this.radioButtonCustomized.TabIndex = 2;
             this.radioButtonCustomized.Text = "Customized";
             this.radioButtonCustomized.UseVisualStyleBackColor = true;
@@ -640,10 +701,10 @@ namespace Adlink_Logger_CS
             // 
             this.radioButtonCrb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonCrb.AutoSize = true;
-            this.radioButtonCrb.Location = new System.Drawing.Point(3, 8);
+            this.radioButtonCrb.Location = new System.Drawing.Point(3, 14);
             this.radioButtonCrb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonCrb.Name = "radioButtonCrb";
-            this.radioButtonCrb.Size = new System.Drawing.Size(73, 23);
+            this.radioButtonCrb.Size = new System.Drawing.Size(73, 19);
             this.radioButtonCrb.TabIndex = 0;
             this.radioButtonCrb.Text = "CRB";
             this.radioButtonCrb.UseVisualStyleBackColor = true;
@@ -654,10 +715,10 @@ namespace Adlink_Logger_CS
             this.radioButtonStandard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonStandard.AutoSize = true;
             this.radioButtonStandard.Checked = true;
-            this.radioButtonStandard.Location = new System.Drawing.Point(82, 8);
+            this.radioButtonStandard.Location = new System.Drawing.Point(82, 14);
             this.radioButtonStandard.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonStandard.Name = "radioButtonStandard";
-            this.radioButtonStandard.Size = new System.Drawing.Size(119, 23);
+            this.radioButtonStandard.Size = new System.Drawing.Size(119, 19);
             this.radioButtonStandard.TabIndex = 1;
             this.radioButtonStandard.TabStop = true;
             this.radioButtonStandard.Text = "Standard";
@@ -670,12 +731,12 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxBiosType.Controls.Add(this.tableLayoutPanel8);
-            this.groupBoxBiosType.Location = new System.Drawing.Point(3, 4);
+            this.groupBoxBiosType.Location = new System.Drawing.Point(3, 50);
             this.groupBoxBiosType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBoxBiosType.Name = "groupBoxBiosType";
             this.groupBoxBiosType.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBoxBiosType.Size = new System.Drawing.Size(337, 67);
-            this.groupBoxBiosType.TabIndex = 0;
+            this.groupBoxBiosType.Size = new System.Drawing.Size(337, 71);
+            this.groupBoxBiosType.TabIndex = 1;
             this.groupBoxBiosType.TabStop = false;
             this.groupBoxBiosType.Text = "Message Type";
             // 
@@ -689,21 +750,21 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel8.Controls.Add(this.radioButtonTag, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.radioButtonMark, 1, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 24);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 20);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(331, 39);
-            this.tableLayoutPanel8.TabIndex = 27;
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(331, 47);
+            this.tableLayoutPanel8.TabIndex = 0;
             // 
             // radioButtonMessage
             // 
             this.radioButtonMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonMessage.AutoSize = true;
             this.radioButtonMessage.Checked = true;
-            this.radioButtonMessage.Location = new System.Drawing.Point(217, 8);
+            this.radioButtonMessage.Location = new System.Drawing.Point(217, 14);
             this.radioButtonMessage.Name = "radioButtonMessage";
-            this.radioButtonMessage.Size = new System.Drawing.Size(111, 23);
+            this.radioButtonMessage.Size = new System.Drawing.Size(111, 19);
             this.radioButtonMessage.TabIndex = 2;
             this.radioButtonMessage.TabStop = true;
             this.radioButtonMessage.Text = "Message";
@@ -714,10 +775,10 @@ namespace Adlink_Logger_CS
             // 
             this.radioButtonTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonTag.AutoSize = true;
-            this.radioButtonTag.Location = new System.Drawing.Point(3, 8);
+            this.radioButtonTag.Location = new System.Drawing.Point(3, 14);
             this.radioButtonTag.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonTag.Name = "radioButtonTag";
-            this.radioButtonTag.Size = new System.Drawing.Size(60, 23);
+            this.radioButtonTag.Size = new System.Drawing.Size(60, 19);
             this.radioButtonTag.TabIndex = 0;
             this.radioButtonTag.Text = "Tag";
             this.radioButtonTag.UseVisualStyleBackColor = true;
@@ -727,10 +788,10 @@ namespace Adlink_Logger_CS
             // 
             this.radioButtonMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonMark.AutoSize = true;
-            this.radioButtonMark.Location = new System.Drawing.Point(69, 8);
+            this.radioButtonMark.Location = new System.Drawing.Point(69, 14);
             this.radioButtonMark.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonMark.Name = "radioButtonMark";
-            this.radioButtonMark.Size = new System.Drawing.Size(142, 23);
+            this.radioButtonMark.Size = new System.Drawing.Size(142, 19);
             this.radioButtonMark.TabIndex = 1;
             this.radioButtonMark.Text = "Mark in history";
             this.radioButtonMark.UseVisualStyleBackColor = true;
@@ -742,10 +803,10 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxModification.Controls.Add(this.tableLayoutPanel9);
-            this.groupBoxModification.Location = new System.Drawing.Point(3, 271);
+            this.groupBoxModification.Location = new System.Drawing.Point(3, 325);
             this.groupBoxModification.Name = "groupBoxModification";
-            this.groupBoxModification.Size = new System.Drawing.Size(337, 69);
-            this.groupBoxModification.TabIndex = 8;
+            this.groupBoxModification.Size = new System.Drawing.Size(337, 73);
+            this.groupBoxModification.TabIndex = 4;
             this.groupBoxModification.TabStop = false;
             this.groupBoxModification.Text = "Modification Type";
             // 
@@ -759,20 +820,20 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel9.Controls.Add(this.radioButtonBugFix, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.radioButtonFunctionAdd, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 23);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(331, 43);
-            this.tableLayoutPanel9.TabIndex = 28;
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(331, 51);
+            this.tableLayoutPanel9.TabIndex = 0;
             // 
             // radioButtonFunctionRemove
             // 
             this.radioButtonFunctionRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonFunctionRemove.AutoSize = true;
-            this.radioButtonFunctionRemove.Location = new System.Drawing.Point(200, 10);
+            this.radioButtonFunctionRemove.Location = new System.Drawing.Point(200, 16);
             this.radioButtonFunctionRemove.Name = "radioButtonFunctionRemove";
-            this.radioButtonFunctionRemove.Size = new System.Drawing.Size(128, 23);
+            this.radioButtonFunctionRemove.Size = new System.Drawing.Size(128, 19);
             this.radioButtonFunctionRemove.TabIndex = 2;
             this.radioButtonFunctionRemove.Text = "Func. Remove";
             this.radioButtonFunctionRemove.UseVisualStyleBackColor = true;
@@ -782,9 +843,9 @@ namespace Adlink_Logger_CS
             this.radioButtonBugFix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonBugFix.AutoSize = true;
             this.radioButtonBugFix.Checked = true;
-            this.radioButtonBugFix.Location = new System.Drawing.Point(3, 10);
+            this.radioButtonBugFix.Location = new System.Drawing.Point(3, 16);
             this.radioButtonBugFix.Name = "radioButtonBugFix";
-            this.radioButtonBugFix.Size = new System.Drawing.Size(76, 23);
+            this.radioButtonBugFix.Size = new System.Drawing.Size(76, 19);
             this.radioButtonBugFix.TabIndex = 0;
             this.radioButtonBugFix.TabStop = true;
             this.radioButtonBugFix.Text = "Bug fix";
@@ -794,9 +855,9 @@ namespace Adlink_Logger_CS
             // 
             this.radioButtonFunctionAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonFunctionAdd.AutoSize = true;
-            this.radioButtonFunctionAdd.Location = new System.Drawing.Point(85, 10);
+            this.radioButtonFunctionAdd.Location = new System.Drawing.Point(85, 16);
             this.radioButtonFunctionAdd.Name = "radioButtonFunctionAdd";
-            this.radioButtonFunctionAdd.Size = new System.Drawing.Size(109, 23);
+            this.radioButtonFunctionAdd.Size = new System.Drawing.Size(109, 19);
             this.radioButtonFunctionAdd.TabIndex = 1;
             this.radioButtonFunctionAdd.Text = "Func. Add";
             this.radioButtonFunctionAdd.UseVisualStyleBackColor = true;
@@ -814,21 +875,21 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(873, 630);
-            this.tableLayoutPanel7.TabIndex = 26;
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(873, 667);
+            this.tableLayoutPanel7.TabIndex = 0;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(873, 630);
+            this.ClientSize = new System.Drawing.Size(873, 667);
             this.Controls.Add(this.tableLayoutPanel7);
             this.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
-            this.Text = "ADLink Commit Logger v0.2-2022-0224";
+            this.Text = "ADLink Commit Logger v0.3-2022-0313";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdlinkLogo)).EndInit();
@@ -837,6 +898,8 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.groupBoxSignature.ResumeLayout(false);
@@ -914,6 +977,10 @@ namespace Adlink_Logger_CS
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
+        private System.Windows.Forms.Label labelRepo;
+        private System.Windows.Forms.Button buttonBrowse;
+        private System.Windows.Forms.ComboBox comboBoxRepo;
     }
 }
 

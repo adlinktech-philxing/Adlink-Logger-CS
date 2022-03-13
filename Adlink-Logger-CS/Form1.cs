@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Media;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace Adlink_Logger_CS
 {
@@ -17,7 +18,7 @@ namespace Adlink_Logger_CS
     {
         public const string APP_KEY							="Logger";
         public const string APP_VERSION_VALUE   			="AppVersion";
-        public const string APP_REGISTRY_VERSION			="0.2";
+        public const string APP_REGISTRY_VERSION			="0.3";
 
         public const string COMPANY_NAME				    ="ADLink";
 
@@ -27,8 +28,9 @@ namespace Adlink_Logger_CS
         public const string VALUE_BIOS_TYPE_CRB             ="BiosTypeCrb";
         public const string VALUE_BIOS_TYPE_STANDARD        ="BiosTypeStandard";
         public const string VALUE_BIOS_TYPE_CUSTOMIZED      ="BiosTypeCustomized";
-        public const string VALUE_PROJECT_NAME              ="ProjectName";
-        public const string VALUE_CUSTOMER_NAME				="CustomerName";
+		public const string VALUE_PROJECT_NAME				="ProjectName";
+		public const string VALUE_PROJECT_REPO				="ProjectRepo";
+		public const string VALUE_CUSTOMER_NAME				="CustomerName";
         public const string VALUE_BIOS_VERSION				="BiosVersion";
         public const string VALUE_MODIFY_TYPE_BF            ="ModifyTypeBugFix";
         public const string VALUE_MODIFY_TYPE_FA            ="ModifyTypeFunctionAdd";
@@ -43,7 +45,8 @@ namespace Adlink_Logger_CS
         public const string VALUE_TEST_CASE					="TestCase";
         public const string VALUE_MODIFY_FILES				="ModifyFiles";
 
-		public const string PROJECT_NAME_KEY				="ProjectName";
+		public const string PROJECT_NAME_KEY                = "ProjectName";
+		public const string REPO_FOLDER_KEY                 = "RepoFolder";
 		public const int MAX_PROJECT_NAME_SAVED = 5;
 		public const int LEADING_SPACE = 8;
 
@@ -107,6 +110,7 @@ namespace Adlink_Logger_CS
 			appKey.SetValue(VALUE_BIOS_TYPE_STANDARD, radioButtonCrb.Checked);
 			appKey.SetValue(VALUE_BIOS_TYPE_CUSTOMIZED, radioButtonCustomized.Checked);
 			appKey.SetValue(VALUE_PROJECT_NAME, comboBoxProjectName.Text);
+			appKey.SetValue(VALUE_PROJECT_REPO, comboBoxRepo.Text);
 			appKey.SetValue(VALUE_CUSTOMER_NAME, textBoxCustomerName.Text);
 			appKey.SetValue(VALUE_BIOS_VERSION, textBoxBiosVersion.Text);
 			appKey.SetValue(VALUE_MODIFY_TYPE_BF, radioButtonBugFix.Checked);
@@ -125,6 +129,7 @@ namespace Adlink_Logger_CS
 			// Save comboBox Lists
 			// 
 			SaveComboSettings(appKey, PROJECT_NAME_KEY, comboBoxProjectName);
+			SaveComboSettings(appKey, REPO_FOLDER_KEY, comboBoxRepo);
 		}
 
 		private void RestoreComboSettings(RegistryKey appKey, string keyName, System.Windows.Forms.ComboBox comboBox)
@@ -165,6 +170,7 @@ namespace Adlink_Logger_CS
 			// Restore comboBox Lists
 			//
 			RestoreComboSettings(appKey, PROJECT_NAME_KEY, comboBoxProjectName);
+			RestoreComboSettings(appKey, REPO_FOLDER_KEY, comboBoxRepo);
 			//
 			// Restore Contexts
 			//
@@ -174,7 +180,8 @@ namespace Adlink_Logger_CS
 			radioButtonCrb.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_BIOS_TYPE_CRB, ""));
 			radioButtonCrb.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_BIOS_TYPE_STANDARD, ""));
 			radioButtonCustomized.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_BIOS_TYPE_CUSTOMIZED, ""));
-			comboBoxProjectName.Text = (string) appKey.GetValue(VALUE_PROJECT_NAME, "");
+			comboBoxProjectName.Text = (string)appKey.GetValue(VALUE_PROJECT_NAME, "");
+			comboBoxRepo.Text = (string)appKey.GetValue(VALUE_PROJECT_REPO, "");
 			textBoxCustomerName.Text = (string)appKey.GetValue(VALUE_CUSTOMER_NAME, "");
 			textBoxBiosVersion.Text = (string)appKey.GetValue(VALUE_BIOS_VERSION, "");
 			radioButtonBugFix.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MODIFY_TYPE_BF, ""));
@@ -398,12 +405,6 @@ namespace Adlink_Logger_CS
 
 		}
 
-		private void textBoxAuthor_TextChanged(object sender, EventArgs e)
-        {
-			this.textBoxAuthor.Text = this.textBoxAuthor.Text.ToUpper();
-			this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
-		}
-
 		private void textBoxDate_TextChanged(object sender, EventArgs e)
         {
 			this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
@@ -432,6 +433,7 @@ namespace Adlink_Logger_CS
         {
 			DateTime localDate = DateTime.Now;
 			this.textBoxDate.Text = localDate.Year.ToString("0000") + localDate.Month.ToString("00") + localDate.Day.ToString("00");
+			this.textBoxSerialNumber.Text = "01";
 		}
 
         private void buttonExport_Click(object sender, EventArgs e)
@@ -460,5 +462,98 @@ namespace Adlink_Logger_CS
         {
             System.Diagnostics.Process.Start("https://github.com/PhilXing/Adlink-Logger-CS");
         }
-    }
+
+        private void buttonBrowse_Click(object sender, EventArgs e)
+        {
+			if (Directory.Exists(comboBoxRepo.Text))
+			{
+				this.folderBrowserDialog1.SelectedPath = comboBoxRepo.Text;
+			}
+			if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				comboBoxRepo.Text = folderBrowserDialog1.SelectedPath;
+				int index = comboBoxRepo.FindStringExact(comboBoxRepo.Text);
+				if (index == -1)
+				{
+					comboBoxRepo.Items.Insert(0, folderBrowserDialog1.SelectedPath);
+					if (comboBoxRepo.Items.Count > MAX_PROJECT_NAME_SAVED)
+					{
+						comboBoxRepo.Items.RemoveAt(0);
+					}
+					comboBoxRepo.SelectedIndex = comboBoxRepo.FindStringExact(comboBoxRepo.Text);
+				}
+				else
+				{
+					comboBoxRepo.SelectedIndex = index;
+					comboBoxRepo.Items.Insert(0, comboBoxRepo.SelectedItem);
+					comboBoxRepo.Items.RemoveAt(comboBoxRepo.SelectedIndex);
+					comboBoxRepo.SelectedIndex = 0;
+				}
+				//ResetControls();
+			}
+		}
+
+        private void comboBoxRepo_Leave(object sender, EventArgs e)
+        {
+			// get list of staged files
+			// declare GIT process
+			var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "git.exe",
+                    WorkingDirectory = comboBoxRepo.Text,
+                    Arguments = "diff --cached --name-only",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+					RedirectStandardInput = true,
+					CreateNoWindow = true
+                }
+            };
+            process.Start();
+            textBoxModifyFiles.Text = "";
+            while (!process.StandardOutput.EndOfStream)
+            {
+                string line = process.StandardOutput.ReadLine();
+                textBoxModifyFiles.Text += (line + Environment.NewLine);
+            }
+
+            // get projest name form git branch name
+            process.StartInfo.Arguments = "rev-parse --abbrev-ref HEAD";
+            process.Start();
+			string branchName = process.StandardOutput.ReadToEnd();
+			// remove tail after '_' as the project name if any
+			int up = branchName.IndexOf('_');
+			if (up >= 0)
+			{
+				branchName = branchName.Substring(0, up);
+			}
+
+			process.WaitForExit();
+
+			// get all VEB files
+			string[] fileEntries = Directory
+					.EnumerateFiles(comboBoxRepo.Text, "*.veb", SearchOption.TopDirectoryOnly)
+					.Select(Path.GetFileNameWithoutExtension)
+					.Select(p => p.Substring(0)).ToArray();
+
+			foreach (string veb in fileEntries)
+            {
+                if (branchName.IndexOf(veb) >= 0)
+                {
+                    comboBoxProjectName.Text = veb;
+                    UpdateComboBox(comboBoxProjectName, comboBoxProjectName.Text, true);
+                    break;
+                }
+            }
+
+			UpdateComboBox(comboBoxRepo, comboBoxRepo.Text, true);
+		}
+
+        private void textBoxAuthor_Leave(object sender, EventArgs e)
+        {
+			this.textBoxAuthor.Text = this.textBoxAuthor.Text.ToUpper();
+			this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
+		}
+	}
 }
