@@ -490,6 +490,7 @@ namespace Adlink_Logger_CS
 					comboBoxRepo.SelectedIndex = 0;
 				}
 				//ResetControls();
+				comboBoxRepo_Leave(sender, e);
 			}
 		}
 
