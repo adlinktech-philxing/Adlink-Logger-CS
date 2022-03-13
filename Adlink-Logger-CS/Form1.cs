@@ -532,22 +532,25 @@ namespace Adlink_Logger_CS
 			process.WaitForExit();
 
 			// get all VEB files
-			string[] fileEntries = Directory
-					.EnumerateFiles(comboBoxRepo.Text, "*.veb", SearchOption.TopDirectoryOnly)
-					.Select(Path.GetFileNameWithoutExtension)
-					.Select(p => p.Substring(0)).ToArray();
-
-			foreach (string veb in fileEntries)
+			if (Directory.Exists(comboBoxRepo.Text))
             {
-                if (branchName.IndexOf(veb) >= 0)
-                {
-                    comboBoxProjectName.Text = veb;
-                    UpdateComboBox(comboBoxProjectName, comboBoxProjectName.Text, true);
-                    break;
-                }
-            }
+					string[] fileEntries = Directory
+						.EnumerateFiles(comboBoxRepo.Text, "*.veb", SearchOption.TopDirectoryOnly)
+						.Select(Path.GetFileNameWithoutExtension)
+						.Select(p => p.Substring(0)).ToArray();
 
-			UpdateComboBox(comboBoxRepo, comboBoxRepo.Text, true);
+				foreach (string veb in fileEntries)
+				{
+					if (branchName.IndexOf(veb) >= 0)
+					{
+						comboBoxProjectName.Text = veb;
+						UpdateComboBox(comboBoxProjectName, comboBoxProjectName.Text, true);
+						break;
+					}
+				}
+
+				UpdateComboBox(comboBoxRepo, comboBoxRepo.Text, true);
+            }
 		}
 
         private void textBoxAuthor_Leave(object sender, EventArgs e)
@@ -555,5 +558,6 @@ namespace Adlink_Logger_CS
 			this.textBoxAuthor.Text = this.textBoxAuthor.Text.ToUpper();
 			this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
 		}
+
 	}
 }

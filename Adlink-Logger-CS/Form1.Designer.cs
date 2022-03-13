@@ -133,6 +133,7 @@ namespace Adlink_Logger_CS
             this.textBoxAuthor.Size = new System.Drawing.Size(126, 23);
             this.textBoxAuthor.TabIndex = 3;
             this.toolTip1.SetToolTip(this.textBoxAuthor, "XX, 2 letters\' initial of the name of the author");
+            this.textBoxAuthor.Leave += new System.EventHandler(this.textBoxAuthor_Leave);
             // 
             // textBoxDate
             // 
@@ -192,7 +193,7 @@ namespace Adlink_Logger_CS
             // 
             this.comboBoxRepo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxRepo.FormattingEnabled = true;
-            this.comboBoxRepo.Location = new System.Drawing.Point(52, 10);
+            this.comboBoxRepo.Location = new System.Drawing.Point(52, 8);
             this.comboBoxRepo.Name = "comboBoxRepo";
             this.comboBoxRepo.Size = new System.Drawing.Size(248, 23);
             this.comboBoxRepo.TabIndex = 0;
@@ -615,7 +616,7 @@ namespace Adlink_Logger_CS
             this.comboBoxProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxProjectName.DropDownWidth = 134;
             this.comboBoxProjectName.FormattingEnabled = true;
-            this.comboBoxProjectName.Location = new System.Drawing.Point(137, 7);
+            this.comboBoxProjectName.Location = new System.Drawing.Point(137, 8);
             this.comboBoxProjectName.Name = "comboBoxProjectName";
             this.comboBoxProjectName.Size = new System.Drawing.Size(197, 23);
             this.comboBoxProjectName.Sorted = true;
