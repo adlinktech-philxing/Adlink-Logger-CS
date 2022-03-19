@@ -11,53 +11,60 @@ using System.IO;
 using System.Media;
 using Microsoft.Win32;
 using System.Diagnostics;
+using Atlassian.Jira;
 
 namespace Adlink_Logger_CS
 {
-    public partial class Form1 : Form
-    {
-        public const string APP_KEY							="Logger";
-        public const string APP_VERSION_VALUE   			="AppVersion";
-        public const string APP_REGISTRY_VERSION			="0.3";
+	public partial class Form1 : Form
+	{
+		public const string APP_KEY = "Logger";
+		public const string APP_VERSION_VALUE = "AppVersion";
+		public const string APP_REGISTRY_VERSION = "0.4";
 
-        public const string COMPANY_NAME				    ="ADLink";
+		public const string COMPANY_NAME = "ADLink";
 
-        public const string VALUE_MESSAGE_TYPE_TAG          ="MessageTypeTag";
-        public const string VALUE_MESSAGE_TYPE_MARK         ="MessageTypeMark";
-        public const string VALUE_MESSAGE_TYPE_MESSAGE      ="MessageTypeMessage";
-        public const string VALUE_BIOS_TYPE_CRB             ="BiosTypeCrb";
-        public const string VALUE_BIOS_TYPE_STANDARD        ="BiosTypeStandard";
-        public const string VALUE_BIOS_TYPE_CUSTOMIZED      ="BiosTypeCustomized";
-		public const string VALUE_PROJECT_NAME				="ProjectName";
-		public const string VALUE_PROJECT_REPO				="ProjectRepo";
-		public const string VALUE_CUSTOMER_NAME				="CustomerName";
-        public const string VALUE_BIOS_VERSION				="BiosVersion";
-        public const string VALUE_MODIFY_TYPE_BF            ="ModifyTypeBugFix";
-        public const string VALUE_MODIFY_TYPE_FA            ="ModifyTypeFunctionAdd";
-        public const string VALUE_MODIFY_TYPE_FD            ="ModifyTypeFunctionRemove";
-        public const string VALUE_ISSUE_NUMBER				="IssueNumber";
-        public const string VALUE_SUMMARY					="Summary";
-        public const string VALUE_SIGNATURE_CHECKED			="SignatureChecked";
-        public const string VALUE_SIGNATURE_AUTHOR			="SignatureAuthor";
-        public const string VALUE_SIGNATURE_DATE			="SignatureDate";
-        public const string VALUE_SIGNATURE_SERIAL_NUM		="SignatureSerialNumber";
-        public const string VALUE_DESCRIPTION				="Description";
-        public const string VALUE_TEST_CASE					="TestCase";
-        public const string VALUE_MODIFY_FILES				="ModifyFiles";
+		public const string VALUE_MESSAGE_TYPE_TAG = "MessageTypeTag";
+		public const string VALUE_MESSAGE_TYPE_MARK = "MessageTypeMark";
+		public const string VALUE_MESSAGE_TYPE_MESSAGE = "MessageTypeMessage";
+		public const string VALUE_BIOS_TYPE_CRB = "BiosTypeCrb";
+		public const string VALUE_BIOS_TYPE_STANDARD = "BiosTypeStandard";
+		public const string VALUE_BIOS_TYPE_CUSTOMIZED = "BiosTypeCustomized";
+		public const string VALUE_PROJECT_NAME = "ProjectName";
+		public const string VALUE_PROJECT_REPO = "ProjectRepo";
+		public const string VALUE_CUSTOMER_NAME = "CustomerName";
+		public const string VALUE_BIOS_VERSION = "BiosVersion";
+		public const string VALUE_MODIFY_TYPE_BF = "ModifyTypeBugFix";
+		public const string VALUE_MODIFY_TYPE_FA = "ModifyTypeFunctionAdd";
+		public const string VALUE_MODIFY_TYPE_FD = "ModifyTypeFunctionRemove";
+		public const string VALUE_ISSUE_NUMBER = "IssueNumber";
+		public const string VALUE_SUMMARY = "Summary";
+		public const string VALUE_SIGNATURE_CHECKED = "SignatureChecked";
+		public const string VALUE_SIGNATURE_AUTHOR = "SignatureAuthor";
+		public const string VALUE_SIGNATURE_DATE = "SignatureDate";
+		public const string VALUE_SIGNATURE_SERIAL_NUM = "SignatureSerialNumber";
+		public const string VALUE_DESCRIPTION = "Description";
+		public const string VALUE_TEST_CASE = "TestCase";
+		public const string VALUE_MODIFY_FILES = "ModifyFiles";
+		public const string VALUE_JIRA_URL = "JiraURL";
+		public const string VALUE_JIRA_UNAME = "JiraUName";
+		public const string VALUE_JIRA_UPASSWORD = "JiraUPassword";
 
-		public const string PROJECT_NAME_KEY                = "ProjectName";
-		public const string REPO_FOLDER_KEY                 = "RepoFolder";
+		public const string VALUE_COMBO_PROJECT_NAME = "ComboProjectName";
+		public const string VALUE_COMBO_REPO_FOLDER = "ComboRepoFolder";
+
 		public const int MAX_PROJECT_NAME_SAVED = 5;
 		public const int LEADING_SPACE = 8;
 
 		//
-		// Saved Form Layout
+		// Jira settings
 		//
-		private System.Drawing.Point formLocation;
-		private System.Drawing.Size formSize;
-        public Form1()
-        {
-            InitializeComponent();
+		public static string JiraURL;
+		public static string JiraUName;
+		public static string JiraUPassword;
+
+		public Form1()
+		{
+			InitializeComponent();
 			RestoreSettings();
 		}
 
@@ -82,7 +89,7 @@ namespace Adlink_Logger_CS
 
 			SaveSettings();
 		}
-		
+
 		private void SaveComboSettings(RegistryKey appKey, string keyName, System.Windows.Forms.ComboBox comboBox)
 		{
 			string keyNameIndex = keyName + "_Index";
@@ -107,7 +114,7 @@ namespace Adlink_Logger_CS
 			appKey.SetValue(VALUE_MESSAGE_TYPE_MARK, radioButtonMark.Checked);
 			appKey.SetValue(VALUE_MESSAGE_TYPE_MESSAGE, radioButtonMessage.Checked);
 			appKey.SetValue(VALUE_BIOS_TYPE_CRB, radioButtonCrb.Checked);
-			appKey.SetValue(VALUE_BIOS_TYPE_STANDARD, radioButtonCrb.Checked);
+			appKey.SetValue(VALUE_BIOS_TYPE_STANDARD, radioButtonStandard.Checked);
 			appKey.SetValue(VALUE_BIOS_TYPE_CUSTOMIZED, radioButtonCustomized.Checked);
 			appKey.SetValue(VALUE_PROJECT_NAME, comboBoxProjectName.Text);
 			appKey.SetValue(VALUE_PROJECT_REPO, comboBoxRepo.Text);
@@ -125,11 +132,14 @@ namespace Adlink_Logger_CS
 			appKey.SetValue(VALUE_DESCRIPTION, textBoxDescription.Text);
 			appKey.SetValue(VALUE_TEST_CASE, textBoxTestCase.Text);
 			appKey.SetValue(VALUE_MODIFY_FILES, textBoxModifyFiles.Text);
+			appKey.SetValue(VALUE_JIRA_URL, JiraURL);
+			appKey.SetValue(VALUE_JIRA_UNAME, JiraUName);
+			appKey.SetValue(VALUE_JIRA_UPASSWORD, JiraUPassword);
 			//
 			// Save comboBox Lists
 			// 
-			SaveComboSettings(appKey, PROJECT_NAME_KEY, comboBoxProjectName);
-			SaveComboSettings(appKey, REPO_FOLDER_KEY, comboBoxRepo);
+			SaveComboSettings(appKey, VALUE_COMBO_PROJECT_NAME, comboBoxProjectName);
+			SaveComboSettings(appKey, VALUE_COMBO_REPO_FOLDER, comboBoxRepo);
 		}
 
 		private void RestoreComboSettings(RegistryKey appKey, string keyName, System.Windows.Forms.ComboBox comboBox)
@@ -169,37 +179,40 @@ namespace Adlink_Logger_CS
 			//
 			// Restore comboBox Lists
 			//
-			RestoreComboSettings(appKey, PROJECT_NAME_KEY, comboBoxProjectName);
-			RestoreComboSettings(appKey, REPO_FOLDER_KEY, comboBoxRepo);
+			RestoreComboSettings(appKey, VALUE_COMBO_PROJECT_NAME, comboBoxProjectName);
+			RestoreComboSettings(appKey, VALUE_COMBO_REPO_FOLDER, comboBoxRepo);
 			//
 			// Restore Contexts
 			//
-			radioButtonTag.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MESSAGE_TYPE_TAG, ""));
-			radioButtonMark.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MESSAGE_TYPE_MARK, ""));
-			radioButtonMessage.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MESSAGE_TYPE_MESSAGE, ""));
-			radioButtonCrb.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_BIOS_TYPE_CRB, ""));
-			radioButtonCrb.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_BIOS_TYPE_STANDARD, ""));
-			radioButtonCustomized.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_BIOS_TYPE_CUSTOMIZED, ""));
+			radioButtonTag.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MESSAGE_TYPE_TAG, false));
+			radioButtonMark.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MESSAGE_TYPE_MARK, false));
+			radioButtonMessage.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MESSAGE_TYPE_MESSAGE, true));
+			radioButtonCrb.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_BIOS_TYPE_CRB, false));
+			radioButtonStandard.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_BIOS_TYPE_STANDARD, true));
+			radioButtonCustomized.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_BIOS_TYPE_CUSTOMIZED, false));
 			comboBoxProjectName.Text = (string)appKey.GetValue(VALUE_PROJECT_NAME, "");
 			comboBoxRepo.Text = (string)appKey.GetValue(VALUE_PROJECT_REPO, "");
 			textBoxCustomerName.Text = (string)appKey.GetValue(VALUE_CUSTOMER_NAME, "");
 			textBoxBiosVersion.Text = (string)appKey.GetValue(VALUE_BIOS_VERSION, "");
-			radioButtonBugFix.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MODIFY_TYPE_BF, ""));
-			radioButtonFunctionAdd.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MODIFY_TYPE_FA, ""));
-			radioButtonFunctionRemove.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MODIFY_TYPE_FD, ""));
-			textBoxIssueNumber.Text = (string) appKey.GetValue(VALUE_ISSUE_NUMBER, "");
-			textBoxSummary.Text = (string) appKey.GetValue(VALUE_SUMMARY, "");
-			checkBoxSignature.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_SIGNATURE_CHECKED, ""));
-			textBoxAuthor.Text = (string) appKey.GetValue(VALUE_SIGNATURE_AUTHOR, "");
-			textBoxDate.Text = (string) appKey.GetValue(VALUE_SIGNATURE_DATE, "");
+			radioButtonBugFix.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MODIFY_TYPE_BF, true));
+			radioButtonFunctionAdd.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MODIFY_TYPE_FA, false));
+			radioButtonFunctionRemove.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_MODIFY_TYPE_FD, false));
+			textBoxIssueNumber.Text = (string)appKey.GetValue(VALUE_ISSUE_NUMBER, "");
+			textBoxSummary.Text = (string)appKey.GetValue(VALUE_SUMMARY, "");
+			checkBoxSignature.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_SIGNATURE_CHECKED, true));
+			textBoxAuthor.Text = (string)appKey.GetValue(VALUE_SIGNATURE_AUTHOR, "");
+			textBoxDate.Text = (string)appKey.GetValue(VALUE_SIGNATURE_DATE, "");
 			textBoxSerialNumber.Text = (string)appKey.GetValue(VALUE_SIGNATURE_SERIAL_NUM, "");
-			textBoxDescription.Text = (string) appKey.GetValue(VALUE_DESCRIPTION, "");
-			textBoxTestCase.Text = (string) appKey.GetValue(VALUE_TEST_CASE, "");
+			textBoxDescription.Text = (string)appKey.GetValue(VALUE_DESCRIPTION, "");
+			textBoxTestCase.Text = (string)appKey.GetValue(VALUE_TEST_CASE, "");
 			textBoxModifyFiles.Text = (string)appKey.GetValue(VALUE_MODIFY_FILES, "");
+			JiraURL = (string)appKey.GetValue(VALUE_JIRA_URL, "");
+			JiraUName = (string)appKey.GetValue(VALUE_JIRA_UNAME, "");
+			JiraUPassword = (string)appKey.GetValue(VALUE_JIRA_UPASSWORD, "");
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
-        {
+		{
 			if (Properties.Settings.Default.F1Size.Width == 0 || Properties.Settings.Default.F1Size.Height == 0)
 			{
 				// first start
@@ -217,22 +230,22 @@ namespace Adlink_Logger_CS
 			}
 
 			EnableControls(sender, e);
-        }
+		}
 
-        private void EnableControls(object sender, EventArgs e)
-        {
-            this.comboBoxProjectName.Enabled = !(this.radioButtonTag.Checked && this.radioButtonCrb.Checked);
-            this.textBoxCustomerName.Enabled = this.radioButtonCustomized.Checked && !(this.radioButtonMark.Checked);
-            this.textBoxBiosVersion.Enabled = !(this.radioButtonMark.Checked) && !(this.radioButtonMessage.Checked);
+		private void EnableControls(object sender, EventArgs e)
+		{
+			this.comboBoxProjectName.Enabled = !(this.radioButtonTag.Checked && this.radioButtonCrb.Checked);
+			this.textBoxCustomerName.Enabled = this.radioButtonCustomized.Checked && !(this.radioButtonMark.Checked);
+			this.textBoxBiosVersion.Enabled = !(this.radioButtonMark.Checked) && !(this.radioButtonMessage.Checked);
 
-            this.groupBoxModification.Enabled = this.radioButtonMessage.Checked || this.radioButtonMark.Checked;
+			this.groupBoxModification.Enabled = this.radioButtonMessage.Checked || this.radioButtonMark.Checked;
 
-            this.textBoxIssueNumber.Enabled = this.radioButtonMessage.Checked;
-            this.textBoxSummary.Enabled = this.radioButtonMessage.Checked || this.radioButtonMark.Checked;
+			this.textBoxIssueNumber.Enabled = this.radioButtonMessage.Checked;
+			this.textBoxSummary.Enabled = this.radioButtonMessage.Checked || this.radioButtonMark.Checked;
 
-            this.textBoxDescription.Enabled = this.radioButtonMessage.Checked;
-            this.textBoxTestCase.Enabled = this.radioButtonMessage.Checked;
-            this.textBoxModifyFiles.Enabled = this.radioButtonMessage.Checked;
+			this.textBoxDescription.Enabled = this.radioButtonMessage.Checked;
+			this.textBoxTestCase.Enabled = this.radioButtonMessage.Checked;
+			this.textBoxModifyFiles.Enabled = this.radioButtonMessage.Checked;
 
 			this.checkBoxSignature.Enabled = this.radioButtonMessage.Checked;
 			this.groupBoxSignature.Enabled = this.radioButtonMessage.Checked;
@@ -368,14 +381,11 @@ namespace Adlink_Logger_CS
 			else
 			{
 				comboBox.SelectedIndex = index;
-				//comboBox.Items.Insert(0, comboBox.SelectedItem);
-				//comboBox.Items.RemoveAt(comboBox.SelectedIndex);
-				//comboBox.SelectedIndex = 0;
 			}
 		}
-		
-        private void buttonClipboard_Click(object sender, EventArgs e)
-        {
+
+		private void buttonClipboard_Click(object sender, EventArgs e)
+		{
 			Clipboard.SetDataObject(exportLog());
 			//
 			// Sound
@@ -384,21 +394,21 @@ namespace Adlink_Logger_CS
 			MessageBox.Show("Copy to Clipboard done!");
 		}
 
-		
+
 		private void comboBoxProjectName_Leave(object sender, EventArgs e)
-        {
+		{
 			UpdateComboBox(comboBoxProjectName, comboBoxProjectName.Text, true);
 		}
 
-        private void checkBoxSignature_CheckedChanged(object sender, EventArgs e)
-        {
+		private void checkBoxSignature_CheckedChanged(object sender, EventArgs e)
+		{
 			groupBoxSignature.Enabled = checkBoxSignature.Checked;
 			if (checkBoxSignature.Checked)
-            {
+			{
 				this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
-            }
-            else
-            {
+			}
+			else
+			{
 				this.checkBoxSignature.Text = "";
 			}
 
@@ -406,38 +416,42 @@ namespace Adlink_Logger_CS
 		}
 
 		private void textBoxDate_TextChanged(object sender, EventArgs e)
-        {
+		{
 			this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
 		}
 
 		private void textBoxSerialNumber_TextChanged(object sender, EventArgs e)
-        {
+		{
 			this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
 		}
 
-        private void textBoxBiosVersion_Leave(object sender, EventArgs e)
-        {
-			if (this.radioButtonCrb.Checked) {
-				if (this.textBoxBiosVersion.Text.Length >= 4) {
-					if (String.Compare(this.textBoxBiosVersion.Text.Substring(0, 4), "CRB_") != 0) {
+		private void textBoxBiosVersion_Leave(object sender, EventArgs e)
+		{
+			if (this.radioButtonCrb.Checked)
+			{
+				if (this.textBoxBiosVersion.Text.Length >= 4)
+				{
+					if (String.Compare(this.textBoxBiosVersion.Text.Substring(0, 4), "CRB_") != 0)
+					{
 						this.textBoxBiosVersion.Text = "CRB_" + this.textBoxBiosVersion.Text;
 					}
 				}
-				else {
+				else
+				{
 					this.textBoxBiosVersion.Text = "CRB_" + this.textBoxBiosVersion.Text;
 				}
 			}
-        }
+		}
 
 		private void buttonToday_Click(object sender, EventArgs e)
-        {
+		{
 			DateTime localDate = DateTime.Now;
 			this.textBoxDate.Text = localDate.Year.ToString("0000") + localDate.Month.ToString("00") + localDate.Day.ToString("00");
 			this.textBoxSerialNumber.Text = "01";
 		}
 
-        private void buttonExport_Click(object sender, EventArgs e)
-        {
+		private void buttonExport_Click(object sender, EventArgs e)
+		{
 			string strIssue = this.textBoxIssueNumber.Text;
 			string FileName = strIssue + ".txt";
 
@@ -451,20 +465,20 @@ namespace Adlink_Logger_CS
 			//
 			SystemSounds.Asterisk.Play();
 			MessageBox.Show("Export to " + Path.GetFileName(FileName) + " done!");
-        }
+		}
 
 		private void pictureBoxAdlinkLogo_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://tpdc-km.adlinktech.com:8090/pages/viewpage.action?pageId=21037656");
-        }
+		{
+			System.Diagnostics.Process.Start("http://tpdc-km.adlinktech.com:8090/pages/viewpage.action?pageId=21037656");
+		}
 
-        private void pictureBoxAdlinkLogo_DoubleClick(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/PhilXing/Adlink-Logger-CS");
-        }
+		private void pictureBoxAdlinkLogo_DoubleClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("https://github.com/PhilXing/Adlink-Logger-CS");
+		}
 
-        private void buttonBrowse_Click(object sender, EventArgs e)
-        {
+		private void buttonBrowse_Click(object sender, EventArgs e)
+		{
 			if (Directory.Exists(comboBoxRepo.Text))
 			{
 				this.folderBrowserDialog1.SelectedPath = comboBoxRepo.Text;
@@ -494,34 +508,34 @@ namespace Adlink_Logger_CS
 			}
 		}
 
-        private void comboBoxRepo_Leave(object sender, EventArgs e)
-        {
+		private void comboBoxRepo_Leave(object sender, EventArgs e)
+		{
 			// get list of staged files
 			// declare GIT process
 			var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "git.exe",
-                    WorkingDirectory = comboBoxRepo.Text,
-                    Arguments = "diff --cached --name-only",
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
+			{
+				StartInfo = new ProcessStartInfo
+				{
+					FileName = "git.exe",
+					WorkingDirectory = comboBoxRepo.Text,
+					Arguments = "diff --cached --name-only",
+					UseShellExecute = false,
+					RedirectStandardOutput = true,
 					RedirectStandardInput = true,
 					CreateNoWindow = true
-                }
-            };
-            process.Start();
-            textBoxModifyFiles.Text = "";
-            while (!process.StandardOutput.EndOfStream)
-            {
-                string line = process.StandardOutput.ReadLine();
-                textBoxModifyFiles.Text += (line + Environment.NewLine);
-            }
+				}
+			};
+			process.Start();
+			textBoxModifyFiles.Text = "";
+			while (!process.StandardOutput.EndOfStream)
+			{
+				string line = process.StandardOutput.ReadLine();
+				textBoxModifyFiles.Text += (line + Environment.NewLine);
+			}
 
-            // get projest name form git branch name
-            process.StartInfo.Arguments = "rev-parse --abbrev-ref HEAD";
-            process.Start();
+			// get projest name form git branch name
+			process.StartInfo.Arguments = "rev-parse --abbrev-ref HEAD";
+			process.Start();
 			string branchName = process.StandardOutput.ReadToEnd();
 			// remove tail after '_' as the project name if any
 			int up = branchName.IndexOf('_');
@@ -534,11 +548,11 @@ namespace Adlink_Logger_CS
 
 			// get all VEB files
 			if (Directory.Exists(comboBoxRepo.Text))
-            {
-					string[] fileEntries = Directory
-						.EnumerateFiles(comboBoxRepo.Text, "*.veb", SearchOption.TopDirectoryOnly)
-						.Select(Path.GetFileNameWithoutExtension)
-						.Select(p => p.Substring(0)).ToArray();
+			{
+				string[] fileEntries = Directory
+					.EnumerateFiles(comboBoxRepo.Text, "*.veb", SearchOption.TopDirectoryOnly)
+					.Select(Path.GetFileNameWithoutExtension)
+					.Select(p => p.Substring(0)).ToArray();
 
 				foreach (string veb in fileEntries)
 				{
@@ -551,14 +565,44 @@ namespace Adlink_Logger_CS
 				}
 
 				UpdateComboBox(comboBoxRepo, comboBoxRepo.Text, true);
-            }
+			}
 		}
 
-        private void textBoxAuthor_Leave(object sender, EventArgs e)
-        {
+		private void textBoxAuthor_Leave(object sender, EventArgs e)
+		{
 			this.textBoxAuthor.Text = this.textBoxAuthor.Text.ToUpper();
 			this.checkBoxSignature.Text = "<ADLINK-" + textBoxAuthor.Text + textBoxDate.Text + "_" + textBoxSerialNumber.Text + ">";
 		}
 
+		private async void textBoxIssueNumber_Leave(object sender, EventArgs e)
+		{
+			if (!string.IsNullOrEmpty(textBoxIssueNumber.Text))
+            {
+				var jira = Jira.CreateRestClient(JiraURL, JiraUName, JiraUPassword);
+				if (jira != null)
+				{
+					try
+                    {
+						var issue = await jira.Issues.GetIssueAsync(textBoxIssueNumber.Text);
+						if (issue != null)
+						{
+							textBoxSummary.Text = issue.Summary;
+						}
+                    }
+					catch (Exception ex)
+                    {
+						MessageBox.Show("Jira connection or data query error.");
+                    }
+				}
+            }
+		}
+		private void buttonJiraLogin_Click(object sender, EventArgs e)
+		{
+			Form2 form2 = new Form2();
+            if (form2.ShowDialog() == DialogResult.OK)
+            {
+				this.textBoxIssueNumber_Leave(sender, e);
+			}
+        }
 	}
 }
