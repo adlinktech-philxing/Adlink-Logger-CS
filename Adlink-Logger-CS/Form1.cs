@@ -58,9 +58,9 @@ namespace Adlink_Logger_CS
 		//
 		// Jira settings
 		//
-		public static string JiraURL;
-		public static string JiraUName;
-		public static string JiraUPassword;
+		public static string JiraURL="";
+		public static string JiraUName="";
+		public static string JiraUPassword="";
 
 		public Form1()
 		{
