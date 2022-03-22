@@ -1,6 +1,8 @@
 # Adlink-Logger-CS
-C# version of the commit logger tool.
-PictureBox and icon are not supported by C++ windows form app.
+* C# version of the commit logger tool.
+* PictureBox and icon are not supported by C++ windows form app.
+* Works with Git installed in PATH.
+
 # Development Environment
 * Microsoft Visual Studio 2022 Community with following components installed
   * .Net Desktop Development
