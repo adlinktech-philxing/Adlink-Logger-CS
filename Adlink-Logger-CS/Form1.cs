@@ -19,7 +19,7 @@ namespace Adlink_Logger_CS
 	{
 		public const string APP_KEY = "Logger";
 		public const string APP_VERSION_VALUE = "AppVersion";
-		public const string APP_REGISTRY_VERSION = "0.4";
+		public const string APP_REGISTRY_VERSION = "0.5";
 
 		public const string COMPANY_NAME = "ADLink";
 
@@ -45,6 +45,8 @@ namespace Adlink_Logger_CS
 		public const string VALUE_DESCRIPTION = "Description";
 		public const string VALUE_TEST_CASE = "TestCase";
 		public const string VALUE_MODIFY_FILES = "ModifyFiles";
+		public const string VALUE_STAGED_FILES_CHECKED = "StagedFilesChecked";
+		public const string VALUE_CHANGE_FILES_CHECKED = "ChangedFilesChecked";
 		public const string VALUE_JIRA_URL = "JiraURL";
 		public const string VALUE_JIRA_UNAME = "JiraUName";
 		public const string VALUE_JIRA_UPASSWORD = "JiraUPassword";
@@ -56,7 +58,7 @@ namespace Adlink_Logger_CS
 		public const int LEADING_SPACE = 8;
 
 		//
-		// Jira settings
+		// Jira settings cross forms
 		//
 		public static string JiraURL="";
 		public static string JiraUName="";
@@ -132,6 +134,8 @@ namespace Adlink_Logger_CS
 			appKey.SetValue(VALUE_DESCRIPTION, textBoxDescription.Text);
 			appKey.SetValue(VALUE_TEST_CASE, textBoxTestCase.Text);
 			appKey.SetValue(VALUE_MODIFY_FILES, textBoxModifyFiles.Text);
+			appKey.SetValue(VALUE_STAGED_FILES_CHECKED, checkBoxStaged.Checked);
+			appKey.SetValue(VALUE_CHANGE_FILES_CHECKED, checkBoxChanges.Checked);
 			appKey.SetValue(VALUE_JIRA_URL, JiraURL);
 			appKey.SetValue(VALUE_JIRA_UNAME, JiraUName);
 			appKey.SetValue(VALUE_JIRA_UPASSWORD, JiraUPassword);
@@ -206,6 +210,8 @@ namespace Adlink_Logger_CS
 			textBoxDescription.Text = (string)appKey.GetValue(VALUE_DESCRIPTION, "");
 			textBoxTestCase.Text = (string)appKey.GetValue(VALUE_TEST_CASE, "");
 			textBoxModifyFiles.Text = (string)appKey.GetValue(VALUE_MODIFY_FILES, "");
+			checkBoxStaged.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_STAGED_FILES_CHECKED, true));
+			checkBoxChanges.Checked = Convert.ToBoolean(appKey.GetValue(VALUE_CHANGE_FILES_CHECKED, true));
 			JiraURL = (string)appKey.GetValue(VALUE_JIRA_URL, "");
 			JiraUName = (string)appKey.GetValue(VALUE_JIRA_UNAME, "");
 			JiraUPassword = (string)appKey.GetValue(VALUE_JIRA_UPASSWORD, "");
@@ -511,6 +517,8 @@ namespace Adlink_Logger_CS
 		private void comboBoxRepo_Leave(object sender, EventArgs e)
 		{
 			// get list of staged files
+			updateModifyFiles();
+
 			// declare GIT process
 			var process = new Process
 			{
@@ -518,23 +526,13 @@ namespace Adlink_Logger_CS
 				{
 					FileName = "git.exe",
 					WorkingDirectory = comboBoxRepo.Text,
-					Arguments = "diff --cached --name-only",
+					Arguments = "rev-parse --abbrev-ref HEAD",
 					UseShellExecute = false,
 					RedirectStandardOutput = true,
 					RedirectStandardInput = true,
 					CreateNoWindow = true
 				}
 			};
-			process.Start();
-			textBoxModifyFiles.Text = "";
-			while (!process.StandardOutput.EndOfStream)
-			{
-				string line = process.StandardOutput.ReadLine();
-				textBoxModifyFiles.Text += (line + Environment.NewLine);
-			}
-
-			// get projest name form git branch name
-			process.StartInfo.Arguments = "rev-parse --abbrev-ref HEAD";
 			process.Start();
 			string branchName = process.StandardOutput.ReadToEnd();
 			// remove tail after '_' as the project name if any
@@ -604,5 +602,60 @@ namespace Adlink_Logger_CS
 				this.textBoxIssueNumber_Leave(sender, e);
 			}
         }
+
+		private void updateModifyFiles()
+        {
+			// declare GIT process
+			textBoxModifyFiles.Text = "";
+			var process = new Process
+			{
+				StartInfo = new ProcessStartInfo
+				{
+					FileName = "git.exe",
+					WorkingDirectory = comboBoxRepo.Text,
+					UseShellExecute = false,
+					RedirectStandardOutput = true,
+					RedirectStandardInput = true,
+					CreateNoWindow = true
+				}
+			};
+			// get staged change file list
+			if (this.checkBoxStaged.Checked)
+			{
+				process.StartInfo.Arguments = "diff --cached --name-only";
+				process.Start();
+				while (!process.StandardOutput.EndOfStream)
+				{
+					string line = process.StandardOutput.ReadLine();
+					textBoxModifyFiles.Text += (line + Environment.NewLine);
+				}
+				process.WaitForExit();
+			}
+			// get change file list
+			if (this.checkBoxChanges.Checked)
+            {
+				process.StartInfo.Arguments = "diff --name-only";
+				process.Start();
+				while (!process.StandardOutput.EndOfStream)
+				{
+					string line = process.StandardOutput.ReadLine();
+					if (textBoxModifyFiles.Text.IndexOf(line) < 0)
+                    {
+						textBoxModifyFiles.Text += (line + Environment.NewLine);
+                    }
+				}
+				process.WaitForExit();
+			}
+		}
+
+		private void checkBoxStaged_CheckedChanged(object sender, EventArgs e)
+		{
+			updateModifyFiles();
+		}
+
+		private void checkBoxChanges_CheckedChanged(object sender, EventArgs e)
+		{
+			updateModifyFiles();
+		}
 	}
 }

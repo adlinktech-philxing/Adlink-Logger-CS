@@ -45,13 +45,16 @@ namespace Adlink_Logger_CS
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.textBoxTestCase = new System.Windows.Forms.TextBox();
             this.textBoxModifyFiles = new System.Windows.Forms.TextBox();
-            this.labelModifyFiles = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.labelTestCase = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonExport = new System.Windows.Forms.Button();
             this.buttonImport = new System.Windows.Forms.Button();
             this.buttonClipboard = new System.Windows.Forms.Button();
+            this.labelTestCase = new System.Windows.Forms.Label();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.labelModifyFiles = new System.Windows.Forms.Label();
+            this.checkBoxStaged = new System.Windows.Forms.CheckBox();
+            this.checkBoxChanges = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.labelRepo = new System.Windows.Forms.Label();
@@ -93,6 +96,7 @@ namespace Adlink_Logger_CS
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdlinkLogo)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -141,7 +145,7 @@ namespace Adlink_Logger_CS
             // textBoxDate
             // 
             this.textBoxDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDate.Location = new System.Drawing.Point(78, 39);
+            this.textBoxDate.Location = new System.Drawing.Point(78, 40);
             this.textBoxDate.MaxLength = 8;
             this.textBoxDate.Name = "textBoxDate";
             this.textBoxDate.Size = new System.Drawing.Size(162, 27);
@@ -152,7 +156,7 @@ namespace Adlink_Logger_CS
             // textBoxSerialNumber
             // 
             this.textBoxSerialNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSerialNumber.Location = new System.Drawing.Point(78, 75);
+            this.textBoxSerialNumber.Location = new System.Drawing.Point(78, 76);
             this.textBoxSerialNumber.MaxLength = 2;
             this.textBoxSerialNumber.Name = "textBoxSerialNumber";
             this.textBoxSerialNumber.Size = new System.Drawing.Size(162, 27);
@@ -197,7 +201,7 @@ namespace Adlink_Logger_CS
             // 
             this.comboBoxRepo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxRepo.FormattingEnabled = true;
-            this.comboBoxRepo.Location = new System.Drawing.Point(83, 8);
+            this.comboBoxRepo.Location = new System.Drawing.Point(83, 6);
             this.comboBoxRepo.Name = "comboBoxRepo";
             this.comboBoxRepo.Size = new System.Drawing.Size(193, 27);
             this.comboBoxRepo.TabIndex = 0;
@@ -216,10 +220,10 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel1.Controls.Add(this.textBoxDescription, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBoxTestCase, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.textBoxModifyFiles, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.labelModifyFiles, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelTestCase, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.labelTestCase, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel13, 0, 5);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(339, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
@@ -227,8 +231,8 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.363684F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.28488F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.363684F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.28488F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.363684F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.39258F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.100464F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.28488F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.769442F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(500, 647);
@@ -236,9 +240,7 @@ namespace Adlink_Logger_CS
             // 
             // textBoxDescription
             // 
-            this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxDescription.Location = new System.Drawing.Point(3, 155);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
@@ -248,37 +250,23 @@ namespace Adlink_Logger_CS
             // 
             // textBoxTestCase
             // 
-            this.textBoxTestCase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxTestCase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxTestCase.Location = new System.Drawing.Point(3, 307);
             this.textBoxTestCase.Multiline = true;
             this.textBoxTestCase.Name = "textBoxTestCase";
             this.textBoxTestCase.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxTestCase.Size = new System.Drawing.Size(494, 118);
+            this.textBoxTestCase.Size = new System.Drawing.Size(494, 113);
             this.textBoxTestCase.TabIndex = 1;
             // 
             // textBoxModifyFiles
             // 
-            this.textBoxModifyFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxModifyFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxModifyFiles.Location = new System.Drawing.Point(3, 459);
             this.textBoxModifyFiles.Multiline = true;
             this.textBoxModifyFiles.Name = "textBoxModifyFiles";
             this.textBoxModifyFiles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxModifyFiles.Size = new System.Drawing.Size(494, 118);
             this.textBoxModifyFiles.TabIndex = 2;
-            // 
-            // labelModifyFiles
-            // 
-            this.labelModifyFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelModifyFiles.AutoSize = true;
-            this.labelModifyFiles.Location = new System.Drawing.Point(3, 437);
-            this.labelModifyFiles.Name = "labelModifyFiles";
-            this.labelModifyFiles.Size = new System.Drawing.Size(94, 19);
-            this.labelModifyFiles.TabIndex = 19;
-            this.labelModifyFiles.Text = "Modify Files";
             // 
             // label1
             // 
@@ -289,16 +277,6 @@ namespace Adlink_Logger_CS
             this.label1.Size = new System.Drawing.Size(88, 19);
             this.label1.TabIndex = 15;
             this.label1.Text = "Description";
-            // 
-            // labelTestCase
-            // 
-            this.labelTestCase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelTestCase.AutoSize = true;
-            this.labelTestCase.Location = new System.Drawing.Point(3, 285);
-            this.labelTestCase.Name = "labelTestCase";
-            this.labelTestCase.Size = new System.Drawing.Size(74, 19);
-            this.labelTestCase.TabIndex = 17;
-            this.labelTestCase.Text = "Test Case";
             // 
             // tableLayoutPanel2
             // 
@@ -358,6 +336,68 @@ namespace Adlink_Logger_CS
             this.buttonClipboard.Text = "Clipboard";
             this.buttonClipboard.UseVisualStyleBackColor = true;
             this.buttonClipboard.Click += new System.EventHandler(this.buttonClipboard_Click);
+            // 
+            // labelTestCase
+            // 
+            this.labelTestCase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelTestCase.AutoSize = true;
+            this.labelTestCase.Location = new System.Drawing.Point(3, 285);
+            this.labelTestCase.Name = "labelTestCase";
+            this.labelTestCase.Size = new System.Drawing.Size(74, 19);
+            this.labelTestCase.TabIndex = 17;
+            this.labelTestCase.Text = "Test Case";
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.ColumnCount = 3;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.57895F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.06882F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.35223F));
+            this.tableLayoutPanel13.Controls.Add(this.labelModifyFiles, 0, 0);
+            this.tableLayoutPanel13.Controls.Add(this.checkBoxStaged, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.checkBoxChanges, 2, 0);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 426);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 1;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(494, 27);
+            this.tableLayoutPanel13.TabIndex = 18;
+            // 
+            // labelModifyFiles
+            // 
+            this.labelModifyFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelModifyFiles.AutoSize = true;
+            this.labelModifyFiles.Location = new System.Drawing.Point(3, 8);
+            this.labelModifyFiles.Name = "labelModifyFiles";
+            this.labelModifyFiles.Size = new System.Drawing.Size(94, 19);
+            this.labelModifyFiles.TabIndex = 0;
+            this.labelModifyFiles.Text = "Modify Files";
+            // 
+            // checkBoxStaged
+            // 
+            this.checkBoxStaged.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBoxStaged.AutoSize = true;
+            this.checkBoxStaged.Location = new System.Drawing.Point(159, 3);
+            this.checkBoxStaged.Name = "checkBoxStaged";
+            this.checkBoxStaged.Size = new System.Drawing.Size(146, 21);
+            this.checkBoxStaged.TabIndex = 1;
+            this.checkBoxStaged.Text = "Staged Changes";
+            this.checkBoxStaged.UseVisualStyleBackColor = true;
+            this.checkBoxStaged.CheckedChanged += new System.EventHandler(this.checkBoxStaged_CheckedChanged);
+            // 
+            // checkBoxChanges
+            // 
+            this.checkBoxChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBoxChanges.AutoSize = true;
+            this.checkBoxChanges.Location = new System.Drawing.Point(351, 3);
+            this.checkBoxChanges.Name = "checkBoxChanges";
+            this.checkBoxChanges.Size = new System.Drawing.Size(92, 21);
+            this.checkBoxChanges.TabIndex = 2;
+            this.checkBoxChanges.Text = "Changes";
+            this.checkBoxChanges.UseVisualStyleBackColor = true;
+            this.checkBoxChanges.CheckedChanged += new System.EventHandler(this.checkBoxChanges_CheckedChanged);
             // 
             // tableLayoutPanel3
             // 
@@ -532,7 +572,7 @@ namespace Adlink_Logger_CS
             // buttonToday
             // 
             this.buttonToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonToday.Location = new System.Drawing.Point(246, 38);
+            this.buttonToday.Location = new System.Drawing.Point(246, 39);
             this.buttonToday.Name = "buttonToday";
             this.buttonToday.Size = new System.Drawing.Size(69, 29);
             this.buttonToday.TabIndex = 5;
@@ -548,7 +588,7 @@ namespace Adlink_Logger_CS
             this.labelAuthor.AutoSize = true;
             this.labelAuthor.Location = new System.Drawing.Point(3, 0);
             this.labelAuthor.Name = "labelAuthor";
-            this.labelAuthor.Size = new System.Drawing.Size(69, 35);
+            this.labelAuthor.Size = new System.Drawing.Size(69, 36);
             this.labelAuthor.TabIndex = 0;
             this.labelAuthor.Text = "Author";
             this.labelAuthor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -559,9 +599,9 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(3, 35);
+            this.labelDate.Location = new System.Drawing.Point(3, 36);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(69, 35);
+            this.labelDate.Size = new System.Drawing.Size(69, 36);
             this.labelDate.TabIndex = 1;
             this.labelDate.Text = "Date";
             this.labelDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -572,9 +612,9 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSerialnumber.AutoSize = true;
-            this.labelSerialnumber.Location = new System.Drawing.Point(3, 70);
+            this.labelSerialnumber.Location = new System.Drawing.Point(3, 72);
             this.labelSerialnumber.Name = "labelSerialnumber";
-            this.labelSerialnumber.Size = new System.Drawing.Size(69, 38);
+            this.labelSerialnumber.Size = new System.Drawing.Size(69, 36);
             this.labelSerialnumber.TabIndex = 2;
             this.labelSerialnumber.Text = "Serial#";
             this.labelSerialnumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -585,7 +625,7 @@ namespace Adlink_Logger_CS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.labelProjectName, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.labelCustomerName, 0, 1);
@@ -610,7 +650,7 @@ namespace Adlink_Logger_CS
             this.labelProjectName.AutoSize = true;
             this.labelProjectName.Location = new System.Drawing.Point(3, 0);
             this.labelProjectName.Name = "labelProjectName";
-            this.labelProjectName.Size = new System.Drawing.Size(104, 36);
+            this.labelProjectName.Size = new System.Drawing.Size(124, 36);
             this.labelProjectName.TabIndex = 2;
             this.labelProjectName.Text = "Project Name";
             this.labelProjectName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -623,7 +663,7 @@ namespace Adlink_Logger_CS
             this.labelCustomerName.AutoSize = true;
             this.labelCustomerName.Location = new System.Drawing.Point(3, 36);
             this.labelCustomerName.Name = "labelCustomerName";
-            this.labelCustomerName.Size = new System.Drawing.Size(104, 36);
+            this.labelCustomerName.Size = new System.Drawing.Size(124, 36);
             this.labelCustomerName.TabIndex = 4;
             this.labelCustomerName.Text = "Customer Name";
             this.labelCustomerName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -636,7 +676,7 @@ namespace Adlink_Logger_CS
             this.labelBiosVersion.AutoSize = true;
             this.labelBiosVersion.Location = new System.Drawing.Point(3, 72);
             this.labelBiosVersion.Name = "labelBiosVersion";
-            this.labelBiosVersion.Size = new System.Drawing.Size(104, 38);
+            this.labelBiosVersion.Size = new System.Drawing.Size(124, 38);
             this.labelBiosVersion.TabIndex = 6;
             this.labelBiosVersion.Text = "Version";
             this.labelBiosVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -646,9 +686,9 @@ namespace Adlink_Logger_CS
             this.comboBoxProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxProjectName.DropDownWidth = 134;
             this.comboBoxProjectName.FormattingEnabled = true;
-            this.comboBoxProjectName.Location = new System.Drawing.Point(113, 4);
+            this.comboBoxProjectName.Location = new System.Drawing.Point(133, 4);
             this.comboBoxProjectName.Name = "comboBoxProjectName";
-            this.comboBoxProjectName.Size = new System.Drawing.Size(208, 27);
+            this.comboBoxProjectName.Size = new System.Drawing.Size(188, 27);
             this.comboBoxProjectName.Sorted = true;
             this.comboBoxProjectName.TabIndex = 0;
             this.comboBoxProjectName.Leave += new System.EventHandler(this.comboBoxProjectName_Leave);
@@ -656,17 +696,17 @@ namespace Adlink_Logger_CS
             // textBoxCustomerName
             // 
             this.textBoxCustomerName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxCustomerName.Location = new System.Drawing.Point(113, 40);
+            this.textBoxCustomerName.Location = new System.Drawing.Point(133, 40);
             this.textBoxCustomerName.Name = "textBoxCustomerName";
-            this.textBoxCustomerName.Size = new System.Drawing.Size(208, 27);
+            this.textBoxCustomerName.Size = new System.Drawing.Size(188, 27);
             this.textBoxCustomerName.TabIndex = 1;
             // 
             // textBoxBiosVersion
             // 
             this.textBoxBiosVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxBiosVersion.Location = new System.Drawing.Point(113, 77);
+            this.textBoxBiosVersion.Location = new System.Drawing.Point(133, 77);
             this.textBoxBiosVersion.Name = "textBoxBiosVersion";
-            this.textBoxBiosVersion.Size = new System.Drawing.Size(208, 27);
+            this.textBoxBiosVersion.Size = new System.Drawing.Size(188, 27);
             this.textBoxBiosVersion.TabIndex = 2;
             this.textBoxBiosVersion.Leave += new System.EventHandler(this.textBoxBiosVersion_Leave);
             // 
@@ -712,7 +752,7 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel10.Size = new System.Drawing.Size(318, 41);
             this.tableLayoutPanel10.TabIndex = 0;
             // 
@@ -921,13 +961,15 @@ namespace Adlink_Logger_CS
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(860, 700);
             this.Name = "Form1";
-            this.Text = "Commit Logger v0.4-2022-0322";
+            this.Text = "Commit Logger v0.5-2022-0323";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdlinkLogo)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel13.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
@@ -965,7 +1007,6 @@ namespace Adlink_Logger_CS
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.TextBox textBoxTestCase;
         private System.Windows.Forms.TextBox textBoxModifyFiles;
-        private System.Windows.Forms.Label labelModifyFiles;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelTestCase;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -1017,6 +1058,10 @@ namespace Adlink_Logger_CS
         private System.Windows.Forms.ComboBox comboBoxRepo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.Button buttonJiraLogin;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private System.Windows.Forms.Label labelModifyFiles;
+        private System.Windows.Forms.CheckBox checkBoxStaged;
+        private System.Windows.Forms.CheckBox checkBoxChanges;
     }
 }
 
