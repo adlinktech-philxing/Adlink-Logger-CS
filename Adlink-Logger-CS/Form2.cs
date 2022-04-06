@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +34,17 @@ namespace Adlink_Logger_CS
             textBoxJiraUrl.Text = Form1.JiraURL;
             textBoxID.Text = Form1.JiraUName;
             textBoxPassword.Text = Form1.JiraUPassword;
+
+            if (String.IsNullOrEmpty(textBoxJiraUrl.Text))
+            {
+                textBoxJiraUrl.Text = "https://jira.adlinktech.com/";
+            }
+
+            if (String.IsNullOrEmpty(textBoxID.Text))
+            {
+                string[] temp = Convert.ToString(WindowsIdentity.GetCurrent().Name).Split('\\');
+                textBoxID.Text = temp[1];
+            }
         }
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)

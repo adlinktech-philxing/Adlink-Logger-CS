@@ -70,30 +70,30 @@ namespace Adlink_Logger_CS
             // textBoxPassword
             // 
             this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPassword.Location = new System.Drawing.Point(73, 76);
+            this.textBoxPassword.Location = new System.Drawing.Point(73, 74);
             this.textBoxPassword.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(203, 23);
-            this.textBoxPassword.TabIndex = 5;
+            this.textBoxPassword.Size = new System.Drawing.Size(203, 27);
+            this.textBoxPassword.TabIndex = 0;
             // 
             // textBoxID
             // 
             this.textBoxID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxID.Location = new System.Drawing.Point(73, 41);
+            this.textBoxID.Location = new System.Drawing.Point(73, 39);
             this.textBoxID.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
             this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(203, 23);
-            this.textBoxID.TabIndex = 4;
+            this.textBoxID.Size = new System.Drawing.Size(203, 27);
+            this.textBoxID.TabIndex = 3;
             // 
             // labelJiraURL
             // 
             this.labelJiraURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelJiraURL.AutoSize = true;
-            this.labelJiraURL.Location = new System.Drawing.Point(3, 10);
+            this.labelJiraURL.Location = new System.Drawing.Point(3, 0);
             this.labelJiraURL.Name = "labelJiraURL";
-            this.labelJiraURL.Size = new System.Drawing.Size(64, 15);
-            this.labelJiraURL.TabIndex = 0;
+            this.labelJiraURL.Size = new System.Drawing.Size(64, 35);
+            this.labelJiraURL.TabIndex = 4;
             this.labelJiraURL.Text = "Jira URL";
             this.labelJiraURL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -101,10 +101,10 @@ namespace Adlink_Logger_CS
             // 
             this.labelID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelID.AutoSize = true;
-            this.labelID.Location = new System.Drawing.Point(3, 45);
+            this.labelID.Location = new System.Drawing.Point(3, 43);
             this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(64, 15);
-            this.labelID.TabIndex = 1;
+            this.labelID.Size = new System.Drawing.Size(64, 19);
+            this.labelID.TabIndex = 5;
             this.labelID.Text = "ID";
             this.labelID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -112,21 +112,21 @@ namespace Adlink_Logger_CS
             // 
             this.labelPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(3, 80);
+            this.labelPassword.Location = new System.Drawing.Point(3, 70);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(64, 15);
-            this.labelPassword.TabIndex = 2;
+            this.labelPassword.Size = new System.Drawing.Size(64, 35);
+            this.labelPassword.TabIndex = 6;
             this.labelPassword.Text = "Password";
             this.labelPassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // textBoxJiraUrl
             // 
             this.textBoxJiraUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxJiraUrl.Location = new System.Drawing.Point(73, 6);
+            this.textBoxJiraUrl.Location = new System.Drawing.Point(73, 4);
             this.textBoxJiraUrl.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
             this.textBoxJiraUrl.Name = "textBoxJiraUrl";
-            this.textBoxJiraUrl.Size = new System.Drawing.Size(203, 23);
-            this.textBoxJiraUrl.TabIndex = 3;
+            this.textBoxJiraUrl.Size = new System.Drawing.Size(203, 27);
+            this.textBoxJiraUrl.TabIndex = 2;
             this.textBoxJiraUrl.Text = "https://jira.adlinktech.com/";
             // 
             // tableLayoutPanel2
@@ -142,7 +142,7 @@ namespace Adlink_Logger_CS
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.Size = new System.Drawing.Size(208, 30);
-            this.tableLayoutPanel2.TabIndex = 6;
+            this.tableLayoutPanel2.TabIndex = 1;
             // 
             // buttonOk
             // 
@@ -169,7 +169,7 @@ namespace Adlink_Logger_CS
             // Form2
             // 
             this.AcceptButton = this.buttonOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(284, 141);
